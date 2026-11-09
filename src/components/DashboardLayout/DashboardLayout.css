@@ -1,0 +1,20 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.layout-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f2f4f7;
+}
+
+.layout-content {
+  padding: 24px;
+}
+
+.access-denied {
+  color: #dc2626;
+}

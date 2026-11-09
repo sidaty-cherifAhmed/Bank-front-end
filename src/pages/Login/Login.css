@@ -1,0 +1,174 @@
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: #f1f5f9;
+}
+
+/* ---------- left brand panel ---------- */
+.login-brand {
+    flex: 1.1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 40px;
+    color: #fff;
+    background: linear-gradient(145deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+}
+
+.login-brand::before,
+.login-brand::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+}
+.login-brand::before { width: 420px; height: 420px; top: -140px; left: -140px; }
+.login-brand::after  { width: 520px; height: 520px; bottom: -220px; right: -160px; }
+
+.login-logo-box {
+    position: relative;
+    z-index: 1;
+    width: 190px;
+    height: 190px;
+    border-radius: 36px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    animation: float 4s ease-in-out infinite;
+}
+.login-logo-box img { width: 88%; height: 88%; object-fit: contain; }
+
+.login-brand h1 {
+    position: relative;
+    z-index: 1;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.login-brand .bar {
+    position: relative;
+    z-index: 1;
+    width: 56px;
+    height: 4px;
+    border-radius: 4px;
+    background: #d4a017;
+    margin-top: -14px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+/* ---------- right form panel ---------- */
+.login-form-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 380px;
+}
+
+.login-form h2 {
+    font-size: 32px;
+    color: #0f172a;
+    margin-bottom: 32px;
+}
+
+.field {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.field .lead-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    transition: color 0.2s;
+}
+
+.field input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 46px 15px 46px;
+    font-size: 15px;
+    color: #0f172a;
+    background: #fff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field input:focus {
+    border-color: #b8860b;
+    box-shadow: 0 0 0 4px rgba(212, 160, 23, 0.22);
+}
+.field:focus-within .lead-icon { color: #b8860b; }
+
+.toggle-eye {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    padding: 4px;
+}
+.toggle-eye:hover { color: #b8860b; }
+
+.login-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+.login-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.45);
+}
+.login-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* ---------- mobile ---------- */
+@media (max-width: 800px) {
+    .login-page { flex-direction: column; }
+    .login-brand { flex: none; padding: 36px 20px; gap: 16px; }
+    .login-logo-box { width: 110px; height: 110px; border-radius: 24px; }
+    .login-brand h1 { font-size: 26px; }
+    .login-brand .bar { display: none; }
+    .login-form-wrap { align-items: flex-start; padding-top: 28px; }
+}

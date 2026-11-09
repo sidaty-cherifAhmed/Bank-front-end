@@ -1,0 +1,74 @@
+.sidebar {
+  width: 240px;
+  background: #111827;
+  color: #fff;
+  padding: 20px 12px;
+  position: sticky;      /* تبقى ثابتة عند النزول في الصفحة */
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;      /* تمرير إذا كثرت القوائم */
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  padding: 0 8px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  background: #1f2937;
+}
+
+.sidebar-link.active {
+  background: #1d4ed8;
+}
+
+
+/* زر Manage Users */
+.sidebar-parent {
+  width: 100%;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sidebar-parent.active-parent {
+  color: #fff;
+  font-weight: bold;
+}
+
+.sidebar-arrow {
+  margin-left: auto;
+  font-size: 11px;
+  display: flex;
+}
+
+/* القائمة الفرعية */
+.submenu {
+  margin-left: 16px;
+  padding-left: 10px;
+  border-left: 1px solid #374151;
+}
+
+.submenu .sidebar-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
