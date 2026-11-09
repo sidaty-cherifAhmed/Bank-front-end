@@ -3,6 +3,7 @@ import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import AddUser from "./pages/AddUser/AddUser";
+import FindUser from "./pages/FindUser/FindUser";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -36,6 +37,7 @@ export default function App() {
             >
               <Route index element={<ManageUsers />} />      {/* List Users */}
               <Route path="add" element={<AddUser />} />     {/* Add User */}
+              <Route path="find" element={<FindUser />} />   {/* Find User */}
          </Route>
 
 
