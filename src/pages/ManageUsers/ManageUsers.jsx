@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../service/api";
-import { permissionNames } from "../../utils/permissions";
+import { FaEye } from "react-icons/fa";
+import PermissionsModal from "../../components/PermissionsModal/PermissionsModal";
 import "./ManageUsers.css";
 
 export default function ManageUsers() {
@@ -8,6 +9,7 @@ export default function ManageUsers() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     api.get("/users")
@@ -38,16 +40,31 @@ export default function ManageUsers() {
         </thead>
         <tbody>
           {users.map((u) => (
-            <tr key={u.userId}>
-              <td>{u.userId}</td>
+            <tr key={u.id}>
+              <td>{u.id}</td>
               <td>{u.userName}</td>
               <td>{u.firstname} {u.lastname}</td>
               <td>{u.phone}</td>
-              <td>{permissionNames(u.permissions)}</td>
+              <td>
+                <button
+                  className="eye-btn"
+                  onClick={() => setSelectedUser(u)}
+                  aria-label="Show permissions"
+                >
+                  <FaEye />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {selectedUser && (
+        <PermissionsModal
+          user={selectedUser}
+          onClose={() => setSelectedUser(null)}
+        />
+      )}
     </div>
   );
 }

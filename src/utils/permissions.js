@@ -26,6 +26,12 @@ export function hasPermission(permission) {
 
 
 
+// هل الرقم mask يحتوي على هذه الصلاحية؟ (القيمة -1 تعني كل الصلاحيات)
+export function maskHas(mask, value) {
+  if (mask === Permissions.ALL) return true;
+  return (mask & value) === value;
+}
+
 export function permissionNames(mask) {
   if (mask === Permissions.ALL) return "All";
   return (
