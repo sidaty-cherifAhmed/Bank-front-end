@@ -193,6 +193,36 @@ button {
   animation: fade-in 0.25s;
 }
 
+.alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  animation: fade-in 0.25s;
+}
+
+.btn-danger {
+  color: #fff;
+  background: linear-gradient(135deg, #ef4444, var(--danger));
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+}
+
+.btn-danger:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(220, 38, 38, 0.4);
+}
+
+.btn-ghost {
+  color: var(--muted);
+  background: #f1f5f9;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
 .spinner {
   width: 32px;
   height: 32px;

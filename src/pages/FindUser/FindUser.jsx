@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FaEye, FaSearch, FaUser, FaPhone } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import api from "../../service/api";
-import PermissionsModal from "../../components/PermissionsModal/PermissionsModal";
+import UserCard from "../../components/UserCard/UserCard";
 import "./FindUser.css";
 
 export default function FindUser() {
@@ -9,7 +9,6 @@ export default function FindUser() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showPermissions, setShowPermissions] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,45 +59,7 @@ export default function FindUser() {
 
       {error && <p className="alert-error find-error">{error}</p>}
 
-      {user && (
-        <div className="user-card card">
-          <div className="user-card-top">
-            <div className="user-avatar">
-              {user.firstname[0]}{user.lastname[0]}
-            </div>
-            <div>
-              <h3>{user.firstname} {user.lastname}</h3>
-              <span className="user-badge">ID {user.id}</span>
-            </div>
-          </div>
-
-          <div className="user-row">
-            <FaUser />
-            <span className="user-label">Username</span>
-            <span className="user-value">{user.userName}</span>
-          </div>
-
-          <div className="user-row">
-            <FaPhone />
-            <span className="user-label">Phone</span>
-            <span className="user-value">{user.phone}</span>
-          </div>
-
-          <button
-            className="perm-btn"
-            onClick={() => setShowPermissions(true)}
-          >
-            <FaEye /> View permissions
-          </button>
-        </div>
-      )}
-
-      {showPermissions && (
-        <PermissionsModal
-          user={user}
-          onClose={() => setShowPermissions(false)}
-        />
-      )}
+      {user && <UserCard user={user} />}
     </div>
   );
 }

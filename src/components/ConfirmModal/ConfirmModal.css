@@ -1,0 +1,37 @@
+.confirm-box {
+  width: 380px;
+  text-align: center;
+}
+
+.confirm-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--danger);
+  background: var(--danger-soft);
+  border-radius: 50%;
+}
+
+.confirm-box h3 {
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.confirm-box p {
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.confirm-actions .btn {
+  flex: 1;
+}
