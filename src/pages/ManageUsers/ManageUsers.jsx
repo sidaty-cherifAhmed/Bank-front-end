@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { FaEye, FaUserPlus } from "react-icons/fa";
 import api from "../../service/api";
-import { FaEye } from "react-icons/fa";
 import PermissionsModal from "../../components/PermissionsModal/PermissionsModal";
 import "./ManageUsers.css";
 
@@ -21,43 +22,62 @@ export default function ManageUsers() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p className="error-text">{error}</p>;
+  if (loading) return <div className="spinner" />;
+  if (error) return <p className="alert-error">{error}</p>;
 
   return (
     <div>
-      <h2>Manage Users</h2>
+      <div className="page-header">
+        <div>
+          <h2 className="page-title">Manage Users</h2>
+          <p className="page-sub">{users.length} users in the system</p>
+        </div>
 
-      <table className="users-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Permissions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((u) => (
-            <tr key={u.id}>
-              <td>{u.id}</td>
-              <td>{u.userName}</td>
-              <td>{u.firstname} {u.lastname}</td>
-              <td>{u.phone}</td>
-              <td>
-                <button
-                  className="eye-btn"
-                  onClick={() => setSelectedUser(u)}
-                  aria-label="Show permissions"
-                >
-                  <FaEye />
-                </button>
-              </td>
+        <Link to="/dashboard/users/add" className="btn btn-primary">
+          <FaUserPlus /> Add User
+        </Link>
+      </div>
+
+      <div className="card table-card">
+        <table className="users-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Phone</th>
+              <th>Permissions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((u) => (
+              <tr key={u.id}>
+                <td className="cell-id">#{u.id}</td>
+                <td>
+                  <div className="cell-user">
+                    <span className="mini-avatar">
+                      {u.firstname[0]}{u.lastname[0]}
+                    </span>
+                    <div>
+                      <div className="cell-name">{u.firstname} {u.lastname}</div>
+                      <div className="cell-username">@{u.userName}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>{u.phone}</td>
+                <td>
+                  <button
+                    className="eye-btn"
+                    onClick={() => setSelectedUser(u)}
+                    aria-label="Show permissions"
+                  >
+                    <FaEye />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {selectedUser && (
         <PermissionsModal

@@ -1,20 +1,36 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  font-family: sans-serif;
 }
 
 .layout-main {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  background: #f2f4f7;
 }
 
 .layout-content {
-  padding: 24px;
+  padding: 28px 32px 48px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fade-up 0.45s var(--ease);
 }
 
 .access-denied {
-  color: #dc2626;
+  margin: 60px auto;
+  max-width: 420px;
+  text-align: center;
+  padding: 28px;
+  color: #b91c1c;
+  background: var(--danger-soft);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 700px) {
+  .layout-content {
+    padding: 20px 16px 40px;
+  }
 }

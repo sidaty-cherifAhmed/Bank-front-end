@@ -1,0 +1,102 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 36px 36px;
+  margin-bottom: 32px;
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #1d4ed8 140%);
+  box-shadow: var(--shadow);
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hero::before { width: 260px; height: 260px; top: -90px; right: -60px; }
+.hero::after  { width: 180px; height: 180px; bottom: -80px; right: 160px; background: rgba(212, 160, 23, 0.18); }
+
+.hero > div {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-hello {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin: 6px 0 8px;
+  letter-spacing: -0.4px;
+}
+
+.hero-text {
+  color: #cbd5e1;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.shortcut {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0;
+  animation: fade-up 0.5s var(--ease) forwards;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+    border-color 0.25s;
+}
+
+.shortcut:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: #c7d7fb;
+}
+
+.shortcut-icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  color: var(--primary);
+  background: var(--primary-soft);
+  border-radius: 12px;
+  transition: background 0.25s, color 0.25s;
+}
+
+.shortcut:hover .shortcut-icon {
+  background: var(--primary);
+  color: #fff;
+}
+
+.shortcut h3 {
+  font-size: 15.5px;
+}
+
+.shortcut p {
+  font-size: 13px;
+  color: var(--muted);
+}

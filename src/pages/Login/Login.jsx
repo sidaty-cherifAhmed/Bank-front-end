@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+    FaUser, FaLock, FaEye, FaEyeSlash,
+} from "react-icons/fa";
 
 import api from "../../service/api";
 import bankImg from "../../assets/bank.png";
@@ -53,12 +55,14 @@ export default function Login()
                     </div>
                     <h1>Welcome Back</h1>
                     <div className="bar" />
+                   
                 </div>
 
                 <div className="login-form-wrap">
                     <form className="login-form" onSubmit={handleSubmit}>
 
                         <h2>Sign in</h2>
+                        <p className="login-sub">Enter your credentials to access your account.</p>
 
                         <div className="field">
                             <FaUser className="lead-icon" />
@@ -93,7 +97,7 @@ export default function Login()
                         {error && <div className="login-error">{error}</div>}
 
                         <button className="login-btn" type="submit" disabled={loading}>
-                            {loading ? "Logging in..." : "Login"}
+                            {loading ? <><span className="btn-spinner" /> Signing in...</> : "Login"}
                         </button>
 
                     </form>

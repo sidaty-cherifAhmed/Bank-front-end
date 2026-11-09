@@ -33,26 +33,35 @@ export default function FindUser() {
 
   return (
     <div>
-      <h2>Find User</h2>
+      <div className="page-header">
+        <div>
+          <h2 className="page-title">Find User</h2>
+          <p className="page-sub">Search for a user by their ID</p>
+        </div>
+      </div>
 
       <form className="find-form" onSubmit={handleSubmit}>
-        <input
-          type="number"
-          min="1"
-          placeholder="User ID"
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={loading}>
-          <FaSearch /> {loading ? "Searching..." : "Search"}
+        <div className="find-input">
+          <FaSearch />
+          <input
+            className="input"
+            type="number"
+            min="1"
+            placeholder="Enter user ID"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary" disabled={loading}>
+          {loading ? "Searching..." : "Search"}
         </button>
       </form>
 
-      {error && <p className="error-text">{error}</p>}
+      {error && <p className="alert-error find-error">{error}</p>}
 
       {user && (
-        <div className="user-card">
+        <div className="user-card card">
           <div className="user-card-top">
             <div className="user-avatar">
               {user.firstname[0]}{user.lastname[0]}

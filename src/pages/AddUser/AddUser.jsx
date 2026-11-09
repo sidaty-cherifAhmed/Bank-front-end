@@ -65,6 +65,7 @@ export default function AddUser() {
     <div className="form-field">
       <label htmlFor={name}>{label}</label>
       <input
+        className="input"
         id={name}
         name={name}
         type={type}
@@ -78,36 +79,45 @@ export default function AddUser() {
 
   return (
     <div>
-      <h2>Add New User</h2>
+      <div className="page-header">
+        <div>
+          <h2 className="page-title">Add New User</h2>
+          <p className="page-sub">Create a staff account and choose what it can do</p>
+        </div>
+      </div>
 
-      <form className="add-user-form" onSubmit={handleSubmit}>
-        {textField("userName", "Username")}
-        {textField("firstname", "First name")}
-        {textField("lastname", "Last name")}
-        {textField("phone", "Phone")}
-        {textField("password", "Password", "password")}
+      <form className="add-user-form card" onSubmit={handleSubmit}>
+        <div className="form-grid">
+          {textField("firstname", "First name")}
+          {textField("lastname", "Last name")}
+          {textField("userName", "Username")}
+          {textField("phone", "Phone")}
+          <div className="span-2">{textField("password", "Password", "password")}</div>
+        </div>
 
         <fieldset className="permissions-box">
           <legend>
-            Permissions <small>(value: {permissions})</small>
+            Permissions <span className="perm-value">{permissions}</span>
           </legend>
 
-          <label className="perm-item">
-            <input type="checkbox" checked={isAll} onChange={toggleAll} />
-            ALL
-          </label>
-
-          {permissionList.map(([name, value]) => (
-            <label key={name} className="perm-item">
-              <input
-                type="checkbox"
-                disabled={isAll}
-                checked={isAll || (permissions & value) === value}
-                onChange={() => togglePermission(value)}
-              />
-              {name}
+          <div className="perm-grid">
+            <label className="perm-item perm-all">
+              <input type="checkbox" checked={isAll} onChange={toggleAll} />
+              ALL
             </label>
-          ))}
+
+            {permissionList.map(([name, value]) => (
+              <label key={name} className="perm-item">
+                <input
+                  type="checkbox"
+                  disabled={isAll}
+                  checked={isAll || (permissions & value) === value}
+                  onChange={() => togglePermission(value)}
+                />
+                {name}
+              </label>
+            ))}
+          </div>
 
           {(errors.permissions || errors.permissionsValid) && (
             <span className="error-text">
@@ -116,9 +126,9 @@ export default function AddUser() {
           )}
         </fieldset>
 
-        {message && <p className="error-text">{message}</p>}
+        {message && <p className="alert-error">{message}</p>}
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="btn btn-primary" disabled={loading}>
           {loading ? "Saving..." : "Create User"}
         </button>
       </form>
