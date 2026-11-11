@@ -6,6 +6,7 @@ import AddUser from "./pages/AddUser/AddUser";
 import FindUser from "./pages/FindUser/FindUser";
 import DeleteUser from "./pages/DeleteUser/DeleteUser";
 import UpdateUser from "./pages/UpdateUser/UpdateUser";
+import AddClient from "./pages/AddClient/AddClient";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -44,10 +45,14 @@ export default function App() {
               <Route path="update" element={<UpdateUser />} /> {/* Update User */}
          </Route>
 
-
-
-
-
+        <Route
+              path="clients/add"
+              element={
+                <ProtectedRoute permission={Permissions.ADD_NEW_CLIENT}>
+                  <AddClient />
+                </ProtectedRoute>
+              }
+            />
 
         </Route>
 
