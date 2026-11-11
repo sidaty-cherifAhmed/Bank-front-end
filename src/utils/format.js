@@ -6,6 +6,19 @@ export function formatMoney(value) {
   });
 }
 
+// التاريخ والوقت: "2026-11-11T12:31:05" -> "11 Nov 2026, 12:31:05"
+export function formatDateTime(value) {
+  return new Date(value).toLocaleString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+}
+
 // الأحرف الأولى من الاسم (حتى حرفين): "Ahmed Ali" -> "AA"
 export function initials(name = "") {
   return name

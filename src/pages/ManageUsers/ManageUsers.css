@@ -104,6 +104,16 @@
   color: var(--success);
 }
 
+.cell-date {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.register-filter {
+  flex: none;
+  width: 260px;
+}
+
 .cell-empty {
   text-align: center;
   color: var(--muted);

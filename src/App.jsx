@@ -11,6 +11,7 @@ import ClientList from "./pages/ClientList/ClientList";
 import FindClient from "./pages/FindClient/FindClient";
 import UpdateClient from "./pages/UpdateClient/UpdateClient";
 import DeleteClient from "./pages/DeleteClient/DeleteClient";
+import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -81,6 +82,15 @@ export default function App() {
               element={
                 <ProtectedRoute permission={Permissions.DELETE_CLIENT}>
                   <DeleteClient />
+                </ProtectedRoute>
+              }
+            />
+
+        <Route
+              path="login-register"
+              element={
+                <ProtectedRoute permission={Permissions.LOGIN_REGISTER_SCREEN}>
+                  <LoginRegister />
                 </ProtectedRoute>
               }
             />
