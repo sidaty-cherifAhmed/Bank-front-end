@@ -2,47 +2,58 @@ import { useEffect, useState } from "react";
 import { FaEye, FaSearch, FaTimes } from "react-icons/fa";
 import api from "../../service/api";
 import PermissionsModal from "../../components/PermissionsModal/PermissionsModal";
+import Pagination from "../../components/Pagination/Pagination";
 import { formatDateTime } from "../../utils/format";
 import "../ManageUsers/ManageUsers.css";
-import "../FindUser/FindUser.css";
 import "../AddUser/AddUser.css";
 import "./LoginRegister.css";
 
-export default function LoginRegister() {
-  const [records, setRecords] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [selected, setSelected] = useState(null);
+const DEFAULT_SIZE = 20;
 
-  // فلتر الاسم يعمل في المتصفح، وفلتر التاريخ يُرسل للخادم
-  const [filter, setFilter] = useState("");
+export default function LoginRegister() {
+  // حقول الإدخال (لم تُطبَّق بعد حتى يضغط المستخدم Search)
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [dateError, setDateError] = useState("");
-  const [searched, setSearched] = useState(false);
 
-  // يجلب السجلات. (حالة loading تُفعَّل من الأزرار، وهي true أصلاً عند أول فتح)
-  const load = (fromValue, toValue) => {
-    // قيمة datetime-local تأتي بدون ثوانٍ: نجعل "من" بداية الدقيقة و"إلى" نهايتها
-    const params = {};
-    if (fromValue) params.from = `${fromValue}:00`;
-    if (toValue) params.to = `${toValue}:59`;
+  // الاستعلام المطبَّق: أي تغيير فيه يجلب بيانات جديدة من الخادم
+  const [query, setQuery] = useState({ from: "", to: "", page: 0, size: DEFAULT_SIZE });
 
-    return api.get("/login-register", { params })
-      .then((res) => setRecords(res.data))
-      .catch((err) => {
-        const status = err.response?.status;
-        if (!err.response) setError("Cannot connect to server");
-        else if (status === 403) setError("You don't have permission");
-        else if (status === 400) setError("Invalid date or time");
-        else setError("Failed to load login records");
-      })
-      .finally(() => setLoading(false));
-  };
+  // النتيجة تحمل معها الاستعلام الذي جاءت من أجله.
+  // إن اختلف عن الاستعلام الحالي فنحن في حالة تحميل.
+  const [result, setResult] = useState({ query: null, data: null, error: "" });
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    load("", "");
-  }, []);
+    let cancelled = false; // لتجاهل ردٍّ متأخر لاستعلام قديم
+
+    // قيمة datetime-local بلا ثوانٍ: "من" بداية الدقيقة و"إلى" نهايتها
+    const params = { page: query.page, size: query.size };
+    if (query.from) params.from = `${query.from}:00`;
+    if (query.to) params.to = `${query.to}:59`;
+
+    api.get("/login-register", { params })
+      .then((res) => {
+        if (!cancelled) setResult({ query, data: res.data, error: "" });
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        const status = err.response?.status;
+        let error = "Failed to load login records";
+        if (!err.response) error = "Cannot connect to server";
+        else if (status === 403) error = "You don't have permission";
+        else if (status === 400) error = "Invalid date or time range";
+        setResult({ query, data: null, error });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [query]);
+
+  const loading = result.query !== query;
+  const { data, error } = result;
+  const searched = Boolean(query.from || query.to);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -52,27 +63,20 @@ export default function LoginRegister() {
       setDateError("The start date must be before the end date");
       return;
     }
-
-    setSearched(Boolean(from || to));
-    setError("");
-    setLoading(true);
-    load(from, to);
+    setQuery((q) => ({ ...q, from, to, page: 0 }));
   };
 
   const handleClear = () => {
     setFrom("");
     setTo("");
     setDateError("");
-    setSearched(false);
-    setError("");
-    setLoading(true);
-    load("", "");
+    setQuery((q) => ({ ...q, from: "", to: "", page: 0 }));
   };
 
-  const q = filter.trim().toLowerCase();
-  const shown = q
-    ? records.filter((r) => r.userName.toLowerCase().includes(q))
-    : records;
+  const goToPage = (page) => setQuery((q) => ({ ...q, page }));
+  const changeSize = (size) => setQuery((q) => ({ ...q, size, page: 0 }));
+
+  const records = data?.content ?? [];
 
   return (
     <div>
@@ -80,22 +84,10 @@ export default function LoginRegister() {
         <div>
           <h2 className="page-title">Login Register</h2>
           <p className="page-sub">
-            {loading
-              ? "Loading..."
-              : q
-                ? `${shown.length} of ${records.length} records`
-                : `${records.length} login records${searched ? " in the selected period" : ", newest first"}`}
+            {data
+              ? `${data.totalElements} login records${searched ? " in the selected period" : ", newest first"}`
+              : "Loading..."}
           </p>
-        </div>
-
-        <div className="find-input register-filter">
-          <FaSearch />
-          <input
-            className="input"
-            placeholder="Filter by username"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-          />
         </div>
       </div>
 
@@ -137,56 +129,70 @@ export default function LoginRegister() {
       </form>
 
       {dateError && <p className="alert-error date-error">{dateError}</p>}
-      {error && <p className="alert-error date-error">{error}</p>}
+      {error && !loading && <p className="alert-error date-error">{error}</p>}
 
-      {loading ? (
+      {loading && !data ? (
         <div className="spinner" />
       ) : (
         !error && (
-          <div className="card table-card">
-            <table className="users-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Date and time</th>
-                  <th>User</th>
-                  <th>Permissions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {shown.length === 0 && (
+          <>
+            <div className={loading ? "card table-card is-loading" : "card table-card"}>
+              <table className="users-table">
+                <thead>
                   <tr>
-                    <td colSpan="4" className="cell-empty">
-                      {q || searched ? "No matching records" : "No login records yet"}
-                    </td>
+                    <th>#</th>
+                    <th>Date and time</th>
+                    <th>User</th>
+                    <th>Permissions</th>
                   </tr>
-                )}
-                {shown.map((r) => (
-                  <tr key={r.id}>
-                    <td className="cell-id">#{r.id}</td>
-                    <td className="cell-date">{formatDateTime(r.dateTime)}</td>
-                    <td>
-                      <div className="cell-user">
-                        <span className="mini-avatar">
-                          {r.userName.slice(0, 2)}
-                        </span>
-                        <div className="cell-name">@{r.userName}</div>
-                      </div>
-                    </td>
-                    <td>
-                      <button
-                        className="eye-btn"
-                        onClick={() => setSelected(r)}
-                        aria-label="Show permissions"
-                      >
-                        <FaEye />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {records.length === 0 && (
+                    <tr>
+                      <td colSpan="4" className="cell-empty">
+                        {searched ? "No records in this period" : "No login records yet"}
+                      </td>
+                    </tr>
+                  )}
+                  {records.map((r) => (
+                    <tr key={r.id}>
+                      <td className="cell-id">#{r.id}</td>
+                      <td className="cell-date">{formatDateTime(r.dateTime)}</td>
+                      <td>
+                        <div className="cell-user">
+                          <span className="mini-avatar">
+                            {r.userName.slice(0, 2)}
+                          </span>
+                          <div className="cell-name">@{r.userName}</div>
+                        </div>
+                      </td>
+                      <td>
+                        <button
+                          className="eye-btn"
+                          onClick={() => setSelected(r)}
+                          aria-label="Show permissions"
+                        >
+                          <FaEye />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {data && (
+              <Pagination
+                page={data.page}
+                size={data.size}
+                totalPages={data.totalPages}
+                totalElements={data.totalElements}
+                disabled={loading}
+                onPageChange={goToPage}
+                onSizeChange={changeSize}
+              />
+            )}
+          </>
         )
       )}
 

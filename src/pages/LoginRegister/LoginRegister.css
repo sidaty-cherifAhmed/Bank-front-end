@@ -17,6 +17,13 @@
   gap: 10px;
 }
 
+/* أثناء التنقل بين الصفحات يبقى الجدول ظاهراً بشفافية */
+.is-loading {
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
 .date-error {
   margin-bottom: 16px;
 }
