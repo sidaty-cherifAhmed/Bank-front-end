@@ -12,6 +12,7 @@ import FindClient from "./pages/FindClient/FindClient";
 import UpdateClient from "./pages/UpdateClient/UpdateClient";
 import DeleteClient from "./pages/DeleteClient/DeleteClient";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
+import Deposit from "./pages/Deposit/Deposit";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -94,6 +95,18 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
+
+        <Route
+              path="transactions"
+              element={
+                <ProtectedRoute permission={Permissions.TRANSACTIONS}>
+                  <Outlet />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate to="deposit" replace />} />
+              <Route path="deposit" element={<Deposit />} />
+            </Route>
 
         <Route
               path="clients/add"

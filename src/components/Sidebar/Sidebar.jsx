@@ -1,7 +1,7 @@
 import {
   FaHome, FaList, FaUserPlus, FaTrash, FaEdit, FaSearch,
   FaExchangeAlt, FaUsers, FaUserMinus, FaUserEdit,
-  FaClipboardList, FaCoins, FaChevronDown, FaChevronRight, FaUniversity
+  FaClipboardList, FaCoins, FaChevronDown, FaChevronRight, FaUniversity, FaPlusCircle
 } from "react-icons/fa";
 import { NavLink,useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -19,7 +19,15 @@ const menu = [
   { path: "/dashboard/clients/delete", label: "Delete Client",      icon: <FaTrash />,       permission: Permissions.DELETE_CLIENT },
   { path: "/dashboard/clients/update", label: "Update Client Info", icon: <FaEdit />,        permission: Permissions.UPDATE_CLIENTS },
   { path: "/dashboard/clients/find",   label: "Find Client",        icon: <FaSearch />,      permission: Permissions.FIND_CLIENT },
-  { path: "/dashboard/transactions",   label: "Transactions",       icon: <FaExchangeAlt />, permission: Permissions.TRANSACTIONS },
+  {
+    label: "Transactions",
+    icon: <FaExchangeAlt />,
+    permission: Permissions.TRANSACTIONS,
+    basePath: "/dashboard/transactions",
+    children: [
+      { path: "/dashboard/transactions/deposit", label: "Deposit", icon: <FaPlusCircle /> },
+    ],
+  },
   {
     label: "Manage Users",
     icon: <FaUsers />,

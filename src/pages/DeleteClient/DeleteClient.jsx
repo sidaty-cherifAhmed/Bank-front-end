@@ -78,6 +78,7 @@ export default function DeleteClient() {
             " This cannot be undone."
           }
           confirmText="Yes, delete"
+          loadingText="Deleting..."
           loading={deleting}
           onConfirm={handleDelete}
           onCancel={() => setConfirming(false)}

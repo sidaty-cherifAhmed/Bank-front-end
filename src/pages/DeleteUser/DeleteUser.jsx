@@ -102,6 +102,7 @@ export default function DeleteUser() {
           title="Delete this user?"
           message={`${user.firstname} ${user.lastname} (@${user.userName}) will be permanently removed. This cannot be undone.`}
           confirmText="Yes, delete"
+          loadingText="Deleting..."
           loading={deleting}
           onConfirm={handleDelete}
           onCancel={() => setConfirming(false)}

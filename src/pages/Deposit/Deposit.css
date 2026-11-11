@@ -1,0 +1,68 @@
+.amount-input {
+  font-size: 22px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.receipt {
+  max-width: 460px;
+  padding: 32px 28px;
+  text-align: center;
+  animation: pop 0.45s var(--ease);
+}
+
+.receipt-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #fff;
+  background: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px #dcfce7;
+}
+
+.receipt h3 {
+  font-size: 21px;
+}
+
+.receipt-sub {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.receipt-rows {
+  margin: 22px 0;
+  text-align: left;
+}
+
+.receipt-rows > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px dashed var(--border);
+  color: var(--muted);
+}
+
+.receipt-rows strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.receipt-plus {
+  color: var(--success) !important;
+}
+
+.receipt-total {
+  border-bottom: none !important;
+  font-size: 17px;
+}
+
+.receipt-total strong {
+  font-size: 24px;
+}

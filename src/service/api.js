@@ -21,7 +21,8 @@ api.interceptors.request.use(
 )
 
 
-api.interceptors.request.use(
+// معالج الردود: عند 401 (رمز منتهٍ أو غير صالح) نمسح الجلسة ونرجع لصفحة الدخول
+api.interceptors.response.use(
 
     (response) => response,
 
