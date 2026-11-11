@@ -1,0 +1,70 @@
+.permissions-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.permissions-box legend {
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.perm-value {
+  margin-left: 6px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--primary-dark);
+  background: var(--primary-soft);
+}
+
+.perm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.perm-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  user-select: none;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s var(--ease);
+}
+
+.perm-item input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+.perm-item:hover {
+  border-color: #b7cdfa;
+  transform: translateY(-1px);
+}
+
+.perm-item:has(input:checked) {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  font-weight: 600;
+}
+
+.perm-item:has(input:disabled) {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.perm-all {
+  grid-column: 1 / -1;
+}

@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../service/api";
-import { Permissions } from "../../utils/permissions";
+import PermissionsPicker from "../../components/PermissionsPicker/PermissionsPicker";
 import "./AddUser.css";
-
-const permissionList = Object.entries(Permissions).filter(([, v]) => v > 0);
 
 const emptyForm = {
   userName: "",
@@ -24,16 +22,8 @@ export default function AddUser() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const isAll = permissions === Permissions.ALL;
-
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-
-  const togglePermission = (value) => {
-    setPermissions((prev) => (prev & value ? prev & ~value : prev | value));
-  };
-
-  const toggleAll = () => setPermissions(isAll ? 0 : Permissions.ALL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,36 +85,11 @@ export default function AddUser() {
           <div className="span-2">{textField("password", "Password", "password")}</div>
         </div>
 
-        <fieldset className="permissions-box">
-          <legend>
-            Permissions <span className="perm-value">{permissions}</span>
-          </legend>
-
-          <div className="perm-grid">
-            <label className="perm-item perm-all">
-              <input type="checkbox" checked={isAll} onChange={toggleAll} />
-              ALL
-            </label>
-
-            {permissionList.map(([name, value]) => (
-              <label key={name} className="perm-item">
-                <input
-                  type="checkbox"
-                  disabled={isAll}
-                  checked={isAll || (permissions & value) === value}
-                  onChange={() => togglePermission(value)}
-                />
-                {name}
-              </label>
-            ))}
-          </div>
-
-          {(errors.permissions || errors.permissionsValid) && (
-            <span className="error-text">
-              {errors.permissions || errors.permissionsValid}
-            </span>
-          )}
-        </fieldset>
+        <PermissionsPicker
+          value={permissions}
+          onChange={setPermissions}
+          error={errors.permissions || errors.permissionsValid}
+        />
 
         {message && <p className="alert-error">{message}</p>}
 
