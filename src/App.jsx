@@ -7,6 +7,8 @@ import FindUser from "./pages/FindUser/FindUser";
 import DeleteUser from "./pages/DeleteUser/DeleteUser";
 import UpdateUser from "./pages/UpdateUser/UpdateUser";
 import AddClient from "./pages/AddClient/AddClient";
+import ClientList from "./pages/ClientList/ClientList";
+import FindClient from "./pages/FindClient/FindClient";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -44,6 +46,24 @@ export default function App() {
               <Route path="delete" element={<DeleteUser />} /> {/* Delete User */}
               <Route path="update" element={<UpdateUser />} /> {/* Update User */}
          </Route>
+
+        <Route
+              path="clients"
+              element={
+                <ProtectedRoute permission={Permissions.LIST_CLIENTS}>
+                  <ClientList />
+                </ProtectedRoute>
+              }
+            />
+
+        <Route
+              path="clients/find"
+              element={
+                <ProtectedRoute permission={Permissions.FIND_CLIENT}>
+                  <FindClient />
+                </ProtectedRoute>
+              }
+            />
 
         <Route
               path="clients/add"

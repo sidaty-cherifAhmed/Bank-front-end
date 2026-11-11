@@ -97,3 +97,15 @@
   color: #fff;
   transform: scale(1.08);
 }
+
+.cell-money {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--success);
+}
+
+.cell-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 36px 20px !important;
+}

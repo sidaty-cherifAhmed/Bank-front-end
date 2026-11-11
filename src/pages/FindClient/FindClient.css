@@ -1,0 +1,29 @@
+.mode-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 18px;
+  background: #e8edf6;
+  border-radius: 12px;
+}
+
+.mode-tab {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.mode-tab:hover {
+  color: var(--text);
+}
+
+.mode-tab.active {
+  color: var(--primary-dark);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}

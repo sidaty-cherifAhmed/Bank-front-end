@@ -1,0 +1,23 @@
+.balance-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 14px 0 6px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, #0f172a, #1e293b 60%, #1d4ed8 160%);
+}
+
+.balance-box span {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.balance-box strong {
+  font-size: 26px;
+  letter-spacing: -0.3px;
+  font-variant-numeric: tabular-nums;
+}
