@@ -9,6 +9,7 @@ import UpdateUser from "./pages/UpdateUser/UpdateUser";
 import AddClient from "./pages/AddClient/AddClient";
 import ClientList from "./pages/ClientList/ClientList";
 import FindClient from "./pages/FindClient/FindClient";
+import UpdateClient from "./pages/UpdateClient/UpdateClient";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -61,6 +62,15 @@ export default function App() {
               element={
                 <ProtectedRoute permission={Permissions.FIND_CLIENT}>
                   <FindClient />
+                </ProtectedRoute>
+              }
+            />
+
+        <Route
+              path="clients/update"
+              element={
+                <ProtectedRoute permission={Permissions.UPDATE_CLIENTS}>
+                  <UpdateClient />
                 </ProtectedRoute>
               }
             />
