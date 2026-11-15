@@ -45,7 +45,14 @@ const menu = [
     ],
   },
   { path: "/dashboard/login-register", label: "Login Register",    icon: <FaClipboardList />, permission: Permissions.LOGIN_REGISTER_SCREEN },
-  { path: "/dashboard/currency",       label: "Currency Exchange", icon: <FaCoins /> },
+  {
+    label: "Currency Exchange",
+    icon: <FaCoins />,
+    basePath: "/dashboard/currency",
+    children: [
+      { path: "/dashboard/currency", label: "Currency List", icon: <FaList /> },
+    ],
+  },
 ];
 
 

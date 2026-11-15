@@ -6,6 +6,14 @@ export function formatMoney(value) {
   });
 }
 
+// سعر الصرف: حتى 6 منازل عشرية بدون أصفار زائدة (3.670000 -> 3.67)
+export function formatRate(value) {
+  return Number(value).toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 6,
+  });
+}
+
 // التاريخ والوقت: "2026-11-11T12:31:05" -> "11 Nov 2026, 12:31:05"
 export function formatDateTime(value) {
   return new Date(value).toLocaleString("en-GB", {
