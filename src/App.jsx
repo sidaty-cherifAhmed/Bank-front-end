@@ -14,6 +14,7 @@ import DeleteClient from "./pages/DeleteClient/DeleteClient";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Deposit from "./pages/Deposit/Deposit";
 import Withdraw from "./pages/Withdraw/Withdraw";
+import Transfer from "./pages/Transfer/Transfer";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -108,6 +109,7 @@ export default function App() {
               <Route index element={<Navigate to="deposit" replace />} />
               <Route path="deposit" element={<Deposit />} />
               <Route path="withdraw" element={<Withdraw />} />
+              <Route path="transfer" element={<Transfer />} />
             </Route>
 
         <Route

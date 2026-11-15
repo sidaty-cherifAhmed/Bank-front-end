@@ -27,6 +27,7 @@ const menu = [
     children: [
       { path: "/dashboard/transactions/deposit", label: "Deposit", icon: <FaPlusCircle /> },
       { path: "/dashboard/transactions/withdraw", label: "Withdraw", icon: <FaMinusCircle /> },
+      { path: "/dashboard/transactions/transfer", label: "Transfer", icon: <FaExchangeAlt /> },
     ],
   },
   {

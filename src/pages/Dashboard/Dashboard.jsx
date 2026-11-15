@@ -10,6 +10,7 @@ const shortcuts = [
   { path: "/dashboard/clients/add",  label: "New Client",    text: "Register a new client",     icon: <FaUserPlus />,     permission: Permissions.ADD_NEW_CLIENT },
   { path: "/dashboard/transactions/deposit", label: "Deposit", text: "Add money to an account", icon: <FaExchangeAlt />, permission: Permissions.TRANSACTIONS },
   { path: "/dashboard/transactions/withdraw", label: "Withdraw", text: "Take money from an account", icon: <FaExchangeAlt />, permission: Permissions.TRANSACTIONS },
+  { path: "/dashboard/transactions/transfer", label: "Transfer", text: "Move money between accounts", icon: <FaExchangeAlt />, permission: Permissions.TRANSACTIONS },
   { path: "/dashboard/users",        label: "Manage Users",  text: "View and manage staff",     icon: <FaUsers />,        permission: Permissions.MANAGE_USERS },
   { path: "/dashboard/users/add",    label: "New User",      text: "Create a staff account",    icon: <FaUserPlus />,     permission: Permissions.MANAGE_USERS },
   { path: "/dashboard/users/find",   label: "Find User",     text: "Search a user by ID",       icon: <FaSearch />,       permission: Permissions.MANAGE_USERS },
