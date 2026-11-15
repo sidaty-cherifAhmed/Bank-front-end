@@ -1,0 +1,31 @@
+.transfer-route {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.account-chip {
+  padding: 3px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  background: var(--primary-soft);
+  border-radius: 999px;
+}
+
+.balances-after {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.balances-after small {
+  display: inline-block;
+  width: 34px;
+  color: var(--muted);
+}

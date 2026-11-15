@@ -1,7 +1,7 @@
 import {
   FaHome, FaList, FaUserPlus, FaTrash, FaEdit, FaSearch,
   FaExchangeAlt, FaUsers, FaUserMinus, FaUserEdit,
-  FaClipboardList, FaCoins, FaChevronDown, FaChevronRight, FaUniversity, FaPlusCircle, FaMinusCircle
+  FaClipboardList, FaCoins, FaChevronDown, FaChevronRight, FaUniversity, FaPlusCircle, FaMinusCircle, FaHistory
 } from "react-icons/fa";
 import { NavLink,useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -28,6 +28,7 @@ const menu = [
       { path: "/dashboard/transactions/deposit", label: "Deposit", icon: <FaPlusCircle /> },
       { path: "/dashboard/transactions/withdraw", label: "Withdraw", icon: <FaMinusCircle /> },
       { path: "/dashboard/transactions/transfer", label: "Transfer", icon: <FaExchangeAlt /> },
+      { path: "/dashboard/transactions/transfer-log", label: "Transfer Log", icon: <FaHistory /> },
     ],
   },
   {
