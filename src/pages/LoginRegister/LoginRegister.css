@@ -17,7 +17,7 @@
   gap: 10px;
 }
 
-/* أثناء التنقل بين الصفحات يبقى الجدول ظاهراً بشفافية */
+/* While moving between pages the table stays visible, semi-transparent */
 .is-loading {
   opacity: 0.55;
   pointer-events: none;

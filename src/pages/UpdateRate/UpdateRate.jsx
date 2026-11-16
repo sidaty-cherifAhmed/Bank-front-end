@@ -10,16 +10,16 @@ import "../Currencies/Currencies.css";
 import "../FindCurrency/FindCurrency.css";
 import "./UpdateRate.css";
 
-const BASE_CODE = "USD"; // أساس كل الأسعار: لا يُعدَّل
+const BASE_CODE = "USD"; // base of all rates: cannot be changed
 
 export default function UpdateRate() {
-  // الخطوة 1: البحث عن الرمز
+  // Step 1: find the code
   const [code, setCode] = useState("");
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState("");
 
-  // الخطوة 2: تعديل السعر
-  const [found, setFound] = useState(null); // قائمة العملات (بلدان تشترك في الرمز)
+  // Step 2: update the rate
+  const [found, setFound] = useState(null); // list of currencies (countries sharing the code)
   const [newRate, setNewRate] = useState("");
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
@@ -73,7 +73,7 @@ export default function UpdateRate() {
       const { data } = await api.put(`/currencies/${encodeURIComponent(currentCode)}/rate`, {
         rate: newRate,
       });
-      setFound(data); // القائمة المحدّثة من الخادم
+      setFound(data); // the updated list from the server
       setNewRate("");
       setSuccess(`The ${currentCode} rate was updated successfully`);
     } catch (err) {
@@ -93,7 +93,7 @@ export default function UpdateRate() {
     }
   };
 
-  // نص التأكيد: يذكر السعر القديم إن كان موحَّداً بين البلدان
+  // Confirmation text: mentions the old rate if it is the same across countries
   const oldRates = found ? [...new Set(found.map((c) => Number(c.rate)))] : [];
   const oldText = oldRates.length === 1 ? ` from ${formatRate(oldRates[0])}` : "";
   const n = found?.length ?? 0;

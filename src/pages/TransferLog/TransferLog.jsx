@@ -10,14 +10,14 @@ import "./TransferLog.css";
 const DEFAULT_SIZE = 20;
 
 export default function TransferLog() {
-  // الاستعلام المطبَّق: أي تغيير فيه يجلب بيانات جديدة من الخادم
+  // Applied query: any change to it fetches new data from the server
   const [query, setQuery] = useState({ page: 0, size: DEFAULT_SIZE });
 
-  // النتيجة تحمل الاستعلام الذي جاءت من أجله، فإن اختلف عن الحالي فنحن نحمّل
+  // The result carries the query it was fetched for; if it differs from the current one, we are loading
   const [result, setResult] = useState({ query: null, data: null, error: "" });
 
   useEffect(() => {
-    let cancelled = false; // لتجاهل ردٍّ متأخر لاستعلام قديم
+    let cancelled = false; // to ignore a late response to an old query
 
     api.get("/transactions/transfer-log", { params: query })
       .then((res) => {

@@ -11,23 +11,23 @@ import "./LoginRegister.css";
 const DEFAULT_SIZE = 20;
 
 export default function LoginRegister() {
-  // حقول الإدخال (لم تُطبَّق بعد حتى يضغط المستخدم Search)
+  // Input fields (not applied until the user clicks Search)
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [dateError, setDateError] = useState("");
 
-  // الاستعلام المطبَّق: أي تغيير فيه يجلب بيانات جديدة من الخادم
+  // Applied query: any change to it fetches new data from the server
   const [query, setQuery] = useState({ from: "", to: "", page: 0, size: DEFAULT_SIZE });
 
-  // النتيجة تحمل معها الاستعلام الذي جاءت من أجله.
-  // إن اختلف عن الاستعلام الحالي فنحن في حالة تحميل.
+  // The result carries the query it was fetched for.
+  // If it differs from the current query, we are loading.
   const [result, setResult] = useState({ query: null, data: null, error: "" });
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    let cancelled = false; // لتجاهل ردٍّ متأخر لاستعلام قديم
+    let cancelled = false; // to ignore a late response to an old query
 
-    // قيمة datetime-local بلا ثوانٍ: "من" بداية الدقيقة و"إلى" نهايتها
+    // datetime-local has no seconds: "from" is the start of the minute and "to" is its end
     const params = { page: query.page, size: query.size };
     if (query.from) params.from = `${query.from}:00`;
     if (query.to) params.to = `${query.to}:59`;

@@ -30,7 +30,7 @@ export default function CurrencyCalculator() {
       .finally(() => setLoading(false));
   }, []);
 
-  // رمز واحد لكل عملة (EUR مثلاً يخص عدة بلدان)، مرتبة بالرمز
+  // One code per currency (EUR, for example, belongs to several countries), sorted by code
   const options = useMemo(() => {
     const byCode = new Map();
     currencies.forEach((c) => {
@@ -39,7 +39,7 @@ export default function CurrencyCalculator() {
     return [...byCode.entries()].map(([code, name]) => ({ code, name }));
   }, [currencies]);
 
-  // إن لم يُختر الهدف بعد: أول عملة تختلف عن المصدر
+  // If no target is chosen yet: the first currency different from the source
   const target = to || options.find((o) => o.code !== from)?.code || "";
 
   const swap = () => {

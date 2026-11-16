@@ -6,12 +6,12 @@ import "../FindUser/FindUser.css";
 import "../AddUser/AddUser.css";
 
 export default function UpdateUser() {
-  // الخطوة 1: البحث
+  // Step 1: search
   const [userId, setUserId] = useState("");
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState("");
 
-  // الخطوة 2: التعديل
+  // Step 2: edit
   const [loadedId, setLoadedId] = useState(null);
   const [form, setForm] = useState(null);
   const [permissions, setPermissions] = useState(0);
@@ -37,7 +37,7 @@ export default function UpdateUser() {
         firstname: data.firstname,
         lastname: data.lastname,
         phone: data.phone,
-        password: "", // فارغة: تبقى كلمة المرور القديمة
+        password: "", // empty: the old password is kept
       });
       setPermissions(data.permissions);
     } catch (err) {
@@ -65,7 +65,7 @@ export default function UpdateUser() {
       return;
     }
 
-    // لا نرسل كلمة المرور إذا تُركت فارغة
+    // Do not send the password if it was left empty
     const body = { ...form, permissions };
     if (!body.password) delete body.password;
 

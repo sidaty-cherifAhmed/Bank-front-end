@@ -5,8 +5,8 @@ import { formatMoney } from "../../utils/format";
 import "../AddUser/AddUser.css";
 
 export default function UpdateClient() {
-  const [client, setClient] = useState(null); // العميل المحمَّل (للقراءة فقط)
-  const [form, setForm] = useState(null);      // الحقول القابلة للتعديل
+  const [client, setClient] = useState(null); // the loaded client (read-only)
+  const [form, setForm] = useState(null);      // the editable fields
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
@@ -18,7 +18,7 @@ export default function UpdateClient() {
       clientName: data.clientName,
       phone: data.phone,
       email: data.email,
-      pinCode: "", // فارغ: يبقى الرمز القديم
+      pinCode: "", // empty: the old PIN is kept
     });
   };
 
@@ -42,7 +42,7 @@ export default function UpdateClient() {
     setMessage("");
     setSuccess("");
 
-    // لا نرسل الرمز السري إذا تُرك فارغاً
+    // Do not send the PIN if it was left empty
     const body = { ...form };
     if (!body.pinCode) delete body.pinCode;
 

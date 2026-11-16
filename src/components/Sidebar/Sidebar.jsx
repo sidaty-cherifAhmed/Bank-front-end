@@ -85,7 +85,7 @@ export default function Sidebar()
       <nav>
         {visibleMenu.map((item) =>
           item.children ? (
-            // عنصر له قائمة فرعية
+            // Item with a submenu
             <div key={item.label}>
               <button
                 className={
@@ -122,7 +122,7 @@ export default function Sidebar()
               )}
             </div>
           ) : (
-            // عنصر عادي
+            // Regular item
             <NavLink
               key={item.path}
               to={item.path}

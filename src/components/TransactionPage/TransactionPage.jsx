@@ -6,8 +6,8 @@ import { formatMoney } from "../../utils/format";
 import "../../pages/AddUser/AddUser.css";
 import "./TransactionPage.css";
 
-// صفحة معاملة (إيداع/سحب). كل نوع يمرّر إعداداته في config:
-// title, subtitle, endpoint, sign ("+" أو "−"), variant ("primary" أو "danger"),
+// Transaction page (deposit/withdraw). Each type passes its settings in config:
+// title, subtitle, endpoint, sign ("+" or "−"), variant ("primary" or "danger"),
 // confirmMessage(amount, account), confirmText, loadingText,
 // successTitle, amountLabel, newLabel, failText
 export default function TransactionPage({ config }) {
@@ -17,9 +17,9 @@ export default function TransactionPage({ config }) {
   const [message, setMessage] = useState("");
   const [confirming, setConfirming] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [receipt, setReceipt] = useState(null); // نتيجة العملية الناجحة
+  const [receipt, setReceipt] = useState(null); // result of the successful operation
 
-  // الخطوة 1: نافذة التأكيد
+  // Step 1: confirmation dialog
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
@@ -27,7 +27,7 @@ export default function TransactionPage({ config }) {
     setConfirming(true);
   };
 
-  // الخطوة 2: الإرسال بعد التأكيد
+  // Step 2: send after confirmation
   const handleConfirm = async () => {
     setLoading(true);
     try {
@@ -42,7 +42,7 @@ export default function TransactionPage({ config }) {
       else if (res.status === 403) setMessage("You don't have permission");
       else if (res.status === 404) setMessage("Account not found");
       else if (res.status === 400 && res.data?.error === "INSUFFICIENT_BALANCE")
-        setMessage(res.data.message); // الرصيد لا يكفي
+        setMessage(res.data.message); // insufficient balance
       else if (res.status === 400) setErrors(res.data); // { field: message }
       else setMessage(config.failText);
     } finally {
@@ -68,7 +68,7 @@ export default function TransactionPage({ config }) {
     </div>
   );
 
-  // ---------- إيصال النجاح ----------
+  // ---------- Success receipt ----------
   if (receipt) {
     const isOut = config.sign === "−";
 
@@ -108,7 +108,7 @@ export default function TransactionPage({ config }) {
     );
   }
 
-  // ---------- النموذج ----------
+  // ---------- Form ----------
   return (
     <div>
       {header}

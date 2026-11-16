@@ -21,7 +21,7 @@ api.interceptors.request.use(
 )
 
 
-// معالج الردود: عند 401 (رمز منتهٍ أو غير صالح) نمسح الجلسة ونرجع لصفحة الدخول
+// Response handler: on 401 (expired or invalid token) clear the session and go back to the login page
 api.interceptors.response.use(
 
     (response) => response,

@@ -3,7 +3,7 @@ import "./Pagination.css";
 
 const SIZES = [10, 20, 50, 100];
 
-// الأرقام التي تظهر: الأولى والأخيرة والحالية وجارتاها، وما بينها "…"
+// Page numbers shown: first, last, current and its neighbours, with "…" in between
 function pageNumbers(current, total) {
   const set = new Set([0, total - 1, current - 1, current, current + 1]);
   const pages = [...set].filter((p) => p >= 0 && p < total).sort((a, b) => a - b);
@@ -16,7 +16,7 @@ function pageNumbers(current, total) {
   return result;
 }
 
-// page يبدأ من 0 (مثل الخادم)
+// page starts at 0 (same as the server)
 export default function Pagination({
   page, size, totalPages, totalElements, disabled, onPageChange, onSizeChange,
 }) {

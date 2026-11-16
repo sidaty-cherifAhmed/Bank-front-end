@@ -2,7 +2,7 @@ import { FaExclamationTriangle, FaQuestion } from "react-icons/fa";
 import "../PermissionsModal/PermissionsModal.css";
 import "./ConfirmModal.css";
 
-// variant: "danger" (أحمر، للحذف) أو "primary" (أزرق، للتأكيدات العادية)
+// variant: "danger" (red, for deletions) or "primary" (blue, for regular confirmations)
 export default function ConfirmModal({
   title,
   message,

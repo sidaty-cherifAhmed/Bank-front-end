@@ -4,7 +4,7 @@ import api from "../../service/api";
 import "../../pages/FindUser/FindUser.css";
 import "./ClientSearch.css";
 
-// طريقتا البحث: كل واحدة لها مسارها في الخادم
+// The two search modes: each one has its own endpoint on the server
 const modes = {
   id: {
     label: "By ID",
@@ -20,8 +20,8 @@ const modes = {
   },
 };
 
-// onFound(client): عند العثور على العميل
-// onReset(): عند بدء بحث جديد أو تغيير الطريقة (لإخفاء النتيجة القديمة)
+// onFound(client): called when the client is found
+// onReset(): called when a new search starts or the mode changes (to hide the old result)
 export default function ClientSearch({ onFound, onReset }) {
   const [mode, setMode] = useState("id");
   const [value, setValue] = useState("");

@@ -14,7 +14,7 @@ export default function DeleteUser() {
   const [confirming, setConfirming] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
-  // الخطوة 1: البحث عن المستخدم لعرضه قبل الحذف
+  // Step 1: find the user and show them before deleting
   const handleSearch = async (e) => {
     e.preventDefault();
     setError("");
@@ -36,7 +36,7 @@ export default function DeleteUser() {
     }
   };
 
-  // الخطوة 2: الحذف بعد التأكيد
+  // Step 2: delete after confirmation
   const handleDelete = async () => {
     setDeleting(true);
     setError("");

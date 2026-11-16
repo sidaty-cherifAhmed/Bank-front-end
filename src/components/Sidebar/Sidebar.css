@@ -62,7 +62,7 @@
   transform: none;
 }
 
-/* الزر الأب (فيه قائمة فرعية) */
+/* Parent button (has a submenu) */
 .sidebar-parent {
   width: 100%;
   background: none;
@@ -82,7 +82,7 @@
   transition: transform 0.25s var(--ease);
 }
 
-/* القائمة الفرعية */
+/* Submenu */
 .submenu {
   margin: 2px 0 8px 22px;
   padding-left: 10px;
@@ -95,7 +95,7 @@
   padding: 9px 12px;
 }
 
-/* شاشات صغيرة: أيقونات فقط */
+/* Small screens: icons only */
 @media (max-width: 800px) {
   .sidebar {
     width: 68px;

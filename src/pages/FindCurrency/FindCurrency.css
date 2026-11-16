@@ -1,4 +1,4 @@
-/* الرمز يظهر بأحرف كبيرة أثناء الكتابة (القيمة المرسلة لا تتغير، والخادم يتجاهل حالة الأحرف) */
+/* The code is displayed in capital letters while typing (the sent value is unchanged, and the server ignores letter case) */
 .upper-input {
   text-transform: uppercase;
 }

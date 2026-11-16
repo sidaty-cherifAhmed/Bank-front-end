@@ -118,7 +118,7 @@ export default function App() {
               <Route path="transfer-log" element={<TransferLog />} />
             </Route>
 
-        {/* العملات: متاحة لأي مستخدم مسجَّل الدخول */}
+        {/* Currencies: available to any logged-in user */}
         <Route path="currency" element={<Currencies />} />
         <Route path="currency/find" element={<FindCurrency />} />
         <Route path="currency/calculator" element={<CurrencyCalculator />} />

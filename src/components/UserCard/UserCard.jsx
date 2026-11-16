@@ -3,7 +3,7 @@ import { FaEye, FaUser, FaPhone } from "react-icons/fa";
 import PermissionsModal from "../PermissionsModal/PermissionsModal";
 import "./UserCard.css";
 
-// بطاقة عرض مستخدم. children = أزرار إضافية تظهر أسفل البطاقة (مثل زر الحذف)
+// User card. children = extra buttons shown at the bottom of the card (e.g. the delete button)
 export default function UserCard({ user, children }) {
   const [showPermissions, setShowPermissions] = useState(false);
 

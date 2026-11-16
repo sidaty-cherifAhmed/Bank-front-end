@@ -21,7 +21,7 @@ export default function AddClient() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  // حقول أرقام فقط (الرمز السري والهاتف): نحذف أي حرف غير رقم
+  // Digits-only fields (PIN code and phone): strip any non-digit character
   const handleDigits = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value.replace(/\D/g, "") });
 

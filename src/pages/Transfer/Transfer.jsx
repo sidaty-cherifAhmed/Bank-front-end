@@ -25,7 +25,7 @@ export default function Transfer() {
     setToAccount(fromAccount);
   };
 
-  // الخطوة 1: فحص سريع ثم نافذة التأكيد
+  // Step 1: quick check, then the confirmation dialog
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
@@ -38,7 +38,7 @@ export default function Transfer() {
     setConfirming(true);
   };
 
-  // الخطوة 2: الإرسال بعد التأكيد
+  // Step 2: send after confirmation
   const handleConfirm = async () => {
     setLoading(true);
     try {
@@ -83,7 +83,7 @@ export default function Transfer() {
     </div>
   );
 
-  // ---------- إيصال النجاح ----------
+  // ---------- Success receipt ----------
   if (receipt) {
     return (
       <div>
@@ -125,7 +125,7 @@ export default function Transfer() {
     );
   }
 
-  // ---------- النموذج ----------
+  // ---------- Form ----------
   return (
     <div>
       {header}

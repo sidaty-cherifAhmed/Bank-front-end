@@ -25,7 +25,7 @@ export default function Currencies() {
   if (loading) return <div className="spinner" />;
   if (error) return <p className="alert-error">{error}</p>;
 
-  // القائمة محمّلة كاملة، فالبحث في المتصفح صحيح هنا
+  // The whole list is loaded, so searching in the browser is correct here
   const q = filter.trim().toLowerCase();
   const shown = q
     ? currencies.filter(

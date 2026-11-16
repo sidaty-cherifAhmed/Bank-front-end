@@ -1,4 +1,4 @@
-/* ============ نظام التصميم: المتغيرات المشتركة ============ */
+/* ============ Design system: shared variables ============ */
 :root {
   --bg: #f4f6fb;
   --surface: #ffffff;
@@ -62,7 +62,7 @@ button {
   background: rgba(37, 99, 235, 0.2);
 }
 
-/* ============ حركات ============ */
+/* ============ Animations ============ */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -89,7 +89,7 @@ button {
   }
 }
 
-/* ============ مكونات مشتركة ============ */
+/* ============ Shared components ============ */
 .page-header {
   display: flex;
   align-items: flex-end;

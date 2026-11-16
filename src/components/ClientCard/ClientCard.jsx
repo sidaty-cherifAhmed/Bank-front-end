@@ -3,7 +3,7 @@ import { formatMoney, initials } from "../../utils/format";
 import "../UserCard/UserCard.css";
 import "./ClientCard.css";
 
-// بطاقة عرض عميل. children = أزرار إضافية أسفل البطاقة
+// Client card. children = extra buttons shown at the bottom of the card
 export default function ClientCard({ client, children }) {
   return (
     <div className="user-card card">

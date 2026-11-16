@@ -5,10 +5,10 @@ import { formatRate } from "../../utils/format";
 import "../ManageUsers/ManageUsers.css";
 import "../FindUser/FindUser.css";
 import "../Currencies/Currencies.css";
-import "../../components/ClientSearch/ClientSearch.css"; // تنسيق التبويبات
+import "../../components/ClientSearch/ClientSearch.css"; // tab styles
 import "./FindCurrency.css";
 
-// طريقتا البحث: لكل واحدة مسارها ووسيطها في الخادم
+// The two search modes: each has its own endpoint and parameter on the server
 const modes = {
   code: {
     label: "By code",
@@ -28,7 +28,7 @@ const modes = {
 export default function FindCurrency() {
   const [mode, setMode] = useState("code");
   const [value, setValue] = useState("");
-  const [results, setResults] = useState(null); // null = لم يُبحث بعد
+  const [results, setResults] = useState(null); // null = no search yet
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 

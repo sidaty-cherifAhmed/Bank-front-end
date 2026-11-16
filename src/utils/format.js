@@ -1,4 +1,4 @@
-// تنسيق الرصيد: 1250 -> 1,250.00
+// Format a balance: 1250 -> 1,250.00
 export function formatMoney(value) {
   return Number(value).toLocaleString("en-US", {
     minimumFractionDigits: 2,
@@ -6,7 +6,7 @@ export function formatMoney(value) {
   });
 }
 
-// ناتج التحويل: من منزلتين إلى 4 منازل (1,250.5000 -> 1,250.50)
+// Conversion result: 2 to 4 decimal places (1,250.5000 -> 1,250.50)
 export function formatConverted(value) {
   return Number(value).toLocaleString("en-US", {
     minimumFractionDigits: 2,
@@ -14,7 +14,7 @@ export function formatConverted(value) {
   });
 }
 
-// سعر الصرف: حتى 6 منازل عشرية بدون أصفار زائدة (3.670000 -> 3.67)
+// Exchange rate: up to 6 decimal places without trailing zeros (3.670000 -> 3.67)
 export function formatRate(value) {
   return Number(value).toLocaleString("en-US", {
     minimumFractionDigits: 2,
@@ -22,7 +22,7 @@ export function formatRate(value) {
   });
 }
 
-// التاريخ والوقت: "2026-11-11T12:31:05" -> "11 Nov 2026, 12:31:05"
+// Date and time: "2026-11-11T12:31:05" -> "11 Nov 2026, 12:31:05"
 export function formatDateTime(value) {
   return new Date(value).toLocaleString("en-GB", {
     day: "2-digit",
@@ -35,7 +35,7 @@ export function formatDateTime(value) {
   });
 }
 
-// الأحرف الأولى من الاسم (حتى حرفين): "Ahmed Ali" -> "AA"
+// Initials of a name (up to two letters): "Ahmed Ali" -> "AA"
 export function initials(name = "") {
   return name
     .trim()
