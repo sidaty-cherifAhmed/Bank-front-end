@@ -52,6 +52,7 @@ const menu = [
     children: [
       { path: "/dashboard/currency", label: "Currency List", icon: <FaList /> },
       { path: "/dashboard/currency/find", label: "Find Currency", icon: <FaSearch /> },
+      { path: "/dashboard/currency/update", label: "Update Rate", icon: <FaEdit />, permission: Permissions.TRANSACTIONS },
     ],
   },
 ];
@@ -103,7 +104,9 @@ export default function Sidebar()
 
               {openMenu === item.label && (
                 <div className="submenu">
-                  {item.children.map((child) => (
+                  {item.children
+                    .filter((child) => !child.permission || hasPermission(child.permission))
+                    .map((child) => (
                     <NavLink
                       key={child.path}
                       to={child.path}
