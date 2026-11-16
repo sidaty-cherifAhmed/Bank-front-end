@@ -6,6 +6,14 @@ export function formatMoney(value) {
   });
 }
 
+// ناتج التحويل: من منزلتين إلى 4 منازل (1,250.5000 -> 1,250.50)
+export function formatConverted(value) {
+  return Number(value).toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 4,
+  });
+}
+
 // سعر الصرف: حتى 6 منازل عشرية بدون أصفار زائدة (3.670000 -> 3.67)
 export function formatRate(value) {
   return Number(value).toLocaleString("en-US", {

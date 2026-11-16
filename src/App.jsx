@@ -19,6 +19,7 @@ import TransferLog from "./pages/TransferLog/TransferLog";
 import Currencies from "./pages/Currencies/Currencies";
 import FindCurrency from "./pages/FindCurrency/FindCurrency";
 import UpdateRate from "./pages/UpdateRate/UpdateRate";
+import CurrencyCalculator from "./pages/CurrencyCalculator/CurrencyCalculator";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -120,6 +121,7 @@ export default function App() {
         {/* العملات: متاحة لأي مستخدم مسجَّل الدخول */}
         <Route path="currency" element={<Currencies />} />
         <Route path="currency/find" element={<FindCurrency />} />
+        <Route path="currency/calculator" element={<CurrencyCalculator />} />
         <Route
               path="currency/update"
               element={

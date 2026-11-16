@@ -1,7 +1,7 @@
 import {
   FaHome, FaList, FaUserPlus, FaTrash, FaEdit, FaSearch,
   FaExchangeAlt, FaUsers, FaUserMinus, FaUserEdit,
-  FaClipboardList, FaCoins, FaChevronDown, FaChevronRight, FaUniversity, FaPlusCircle, FaMinusCircle, FaHistory
+  FaClipboardList, FaCoins, FaChevronDown, FaChevronRight, FaUniversity, FaPlusCircle, FaMinusCircle, FaHistory, FaCalculator
 } from "react-icons/fa";
 import { NavLink,useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -52,6 +52,7 @@ const menu = [
     children: [
       { path: "/dashboard/currency", label: "Currency List", icon: <FaList /> },
       { path: "/dashboard/currency/find", label: "Find Currency", icon: <FaSearch /> },
+      { path: "/dashboard/currency/calculator", label: "Calculator", icon: <FaCalculator /> },
       { path: "/dashboard/currency/update", label: "Update Rate", icon: <FaEdit />, permission: Permissions.TRANSACTIONS },
     ],
   },
