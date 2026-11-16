@@ -51,6 +51,7 @@ const menu = [
     basePath: "/dashboard/currency",
     children: [
       { path: "/dashboard/currency", label: "Currency List", icon: <FaList /> },
+      { path: "/dashboard/currency/find", label: "Find Currency", icon: <FaSearch /> },
     ],
   },
 ];

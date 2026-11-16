@@ -1,0 +1,14 @@
+/* الرمز يظهر بأحرف كبيرة أثناء الكتابة (القيمة المرسلة لا تتغير، والخادم يتجاهل حالة الأحرف) */
+.upper-input {
+  text-transform: uppercase;
+}
+
+.upper-input::placeholder {
+  text-transform: none;
+}
+
+.result-count {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--muted);
+}

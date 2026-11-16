@@ -17,6 +17,7 @@ import Withdraw from "./pages/Withdraw/Withdraw";
 import Transfer from "./pages/Transfer/Transfer";
 import TransferLog from "./pages/TransferLog/TransferLog";
 import Currencies from "./pages/Currencies/Currencies";
+import FindCurrency from "./pages/FindCurrency/FindCurrency";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Permissions } from "./utils/permissions";
@@ -117,6 +118,7 @@ export default function App() {
 
         {/* العملات: متاحة لأي مستخدم مسجَّل الدخول */}
         <Route path="currency" element={<Currencies />} />
+        <Route path="currency/find" element={<FindCurrency />} />
 
         <Route
               path="clients/add"
