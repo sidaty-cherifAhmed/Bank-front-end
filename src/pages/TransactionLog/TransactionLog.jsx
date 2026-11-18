@@ -92,19 +92,19 @@ export default function TransactionLog() {
                     const t = TYPES[r.type] ?? { label: r.type, sign: "", className: "", icon: null };
                     return (
                       <tr key={r.id}>
-                        <td className="cell-id">#{r.id}</td>
-                        <td className="cell-date">{formatDateTime(r.dateTime)}</td>
-                        <td>
+                        <td data-label="#" className="cell-id">#{r.id}</td>
+                        <td data-label="Date and time" className="cell-date">{formatDateTime(r.dateTime)}</td>
+                        <td data-label="Type">
                           <span className={`type-badge ${t.className}`}>
                             {t.icon} {t.label}
                           </span>
                         </td>
-                        <td><span className="account-chip">{r.accountNumber}</span></td>
-                        <td className={`cell-amount ${t.className}`}>
+                        <td data-label="Account"><span className="account-chip">{r.accountNumber}</span></td>
+                        <td data-label="Amount" className={`cell-amount ${t.className}`}>
                           {t.sign} {formatMoney(r.amount)}
                         </td>
-                        <td className="cell-balance">{formatMoney(r.balanceAfter)}</td>
-                        <td>
+                        <td data-label="Balance after" className="cell-balance">{formatMoney(r.balanceAfter)}</td>
+                        <td data-label="By">
                           <div className="cell-user">
                             <span className="mini-avatar">{r.userName.slice(0, 2)}</span>
                             <div className="cell-name">@{r.userName}</div>

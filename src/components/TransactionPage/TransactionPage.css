@@ -1,72 +1,86 @@
+/* The amount is typed big, like a figure */
 .amount-input {
-  font-size: 22px;
-  font-weight: 600;
+  min-height: 66px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
 
+/* ---------- receipt ---------- */
 .receipt {
   max-width: 460px;
-  padding: 32px 28px;
-  text-align: center;
-  animation: pop 0.45s var(--ease);
+  padding: 26px 20px;
+  animation: pop 0.35s var(--ease);
 }
 
 .receipt-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
   color: #fff;
-  background: var(--success);
+  background: var(--pos);
   border-radius: 50%;
-  box-shadow: 0 0 0 8px #dcfce7;
 }
 
 .receipt h3 {
-  font-size: 21px;
+  font-size: 27px;
 }
 
 .receipt-sub {
-  margin-top: 2px;
+  margin-top: 4px;
+  font-size: 15px;
   color: var(--muted);
-  font-size: 14px;
 }
 
 .receipt-rows {
-  margin: 22px 0;
-  text-align: left;
+  margin: 20px 0 22px;
 }
 
 .receipt-rows > div {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 13px 0;
-  border-bottom: 1px dashed var(--border);
+  align-items: baseline;
+  gap: 16px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(25, 28, 31, 0.08);
   color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .receipt-rows strong {
-  color: var(--text);
+  color: var(--ink);
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
 
 .receipt-plus {
-  color: var(--success) !important;
-}
-
-.receipt-total {
-  border-bottom: none !important;
-  font-size: 17px;
-}
-
-.receipt-total strong {
-  font-size: 24px;
+  color: var(--pos) !important;
 }
 
 .receipt-minus {
-  color: var(--danger) !important;
+  color: var(--neg) !important;
+}
+
+.receipt-total strong {
+  font-size: 30px;
+  letter-spacing: -0.03em;
+}
+
+.receipt > .btn {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .receipt {
+    padding: 32px;
+  }
+
+  .receipt > .btn {
+    width: auto;
+  }
 }

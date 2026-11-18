@@ -1,56 +1,61 @@
+/* Dialogs: a bottom sheet on phones, a centred panel from 640px */
 .modal-backdrop {
   position: fixed;
   inset: 0;
   z-index: 100;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 16px;
-  background: rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(4px);
+  background: rgba(25, 28, 31, 0.5);
   animation: fade-in 0.2s;
 }
 
 .modal-box {
-  width: 400px;
-  max-width: 100%;
-  max-height: 90vh;
+  width: 100%;
+  max-height: 88vh;
+  max-height: 88dvh;
   overflow-y: auto;
-  padding: 22px 24px;
-  background: var(--surface);
-  border-radius: 18px;
-  box-shadow: var(--shadow-lg);
-  animation: pop 0.3s var(--ease);
+  padding: 12px 20px calc(24px + env(safe-area-inset-bottom));
+  background: var(--paper);
+  border-radius: 28px 28px 0 0;
+  animation: sheet-up 0.32s var(--ease);
+}
+
+/* the little grab handle of a sheet */
+.modal-box::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin: 0 auto 16px;
+  background: var(--rule-strong);
+  border-radius: 3px;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 .modal-header h3 {
-  font-size: 18px;
+  font-size: 23px;
 }
 
 .modal-close {
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: var(--surface);
   border: none;
   border-radius: 50%;
-  color: var(--muted);
-  background: #f1f5f9;
-  transition: background 0.2s, color 0.2s, transform 0.2s var(--ease);
 }
 
 .modal-close:hover {
-  background: var(--danger-soft);
-  color: var(--danger);
-  transform: rotate(90deg);
+  background: var(--sunken);
 }
 
 .modal-list {
@@ -61,22 +66,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 11px 4px;
-  min-height: 46px;
-  border-bottom: 1px solid #eef1f6;
-  font-size: 14.5px;
+  min-height: 54px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.modal-list li:last-child {
-  border-bottom: none;
+.modal-list li + li {
+  border-top: 1px solid var(--rule);
 }
 
 .perm-check {
   width: 24px;
   height: 24px;
   padding: 6px;
-  border-radius: 50%;
   color: #fff;
-  background: var(--success);
-  animation: pop 0.35s var(--ease);
+  background: var(--pos);
+  border-radius: 50%;
+  animation: pop 0.3s var(--ease);
+}
+
+@media (min-width: 640px) {
+  .modal-backdrop {
+    align-items: center;
+    padding: 24px;
+  }
+
+  .modal-box {
+    width: 440px;
+    padding: 26px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    animation: pop 0.25s var(--ease);
+  }
+
+  .modal-box::before {
+    display: none;
+  }
 }

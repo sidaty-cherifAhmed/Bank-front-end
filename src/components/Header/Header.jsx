@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaBars, FaSignOutAlt } from "react-icons/fa";
 import { getUser } from "../../utils/permissions";
 import "./Header.css";
 
-export default function Header() {
+// onMenu: opens the drawer (phones) or folds/unfolds the menu (wide screens)
+export default function Header({ onMenu, collapsed = false }) {
 
   const navigate = useNavigate();
   const user = getUser();
@@ -15,18 +16,28 @@ export default function Header() {
 
   return (
     <header className="header">
-      <div className="header-user">
-        <div className="header-avatar">
-          {user?.firstname?.[0]}{user?.lastname?.[0]}
-        </div>
-        <div className="header-text">
-          <span className="header-hello">Welcome back</span>
+      <div className="header-left">
+        <button
+          type="button"
+          className="menu-btn"
+          onClick={onMenu}
+          aria-label={collapsed ? "Show menu" : "Hide menu"}
+          title={collapsed ? "Show menu" : "Hide menu"}
+        >
+          <FaBars />
+        </button>
+
+        <div className="header-user">
+          <span className="header-mono">
+            {user?.firstname?.[0]}{user?.lastname?.[0]}
+          </span>
           <span className="header-name">{user?.firstname} {user?.lastname}</span>
         </div>
       </div>
 
-      <button className="logout-btn" onClick={logout}>
-        <FaSignOutAlt /> <span>Logout</span>
+      <button className="logout-btn" onClick={logout} aria-label="Log out">
+        <FaSignOutAlt />
+        <span>Log out</span>
       </button>
     </header>
   );

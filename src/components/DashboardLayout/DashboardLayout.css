@@ -1,36 +1,42 @@
 .layout {
-  display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .layout-main {
-  flex: 1;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
 }
 
+/* Room at the bottom so the tab bar never covers the last item */
 .layout-content {
-  padding: 28px 32px 48px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1040px;
   margin: 0 auto;
-  animation: fade-up 0.45s var(--ease);
+  padding: 8px var(--gutter) calc(var(--tabbar-h) + 40px + env(safe-area-inset-bottom));
+  animation: fade-up 0.35s var(--ease);
 }
 
 .access-denied {
-  margin: 60px auto;
+  margin: 48px auto;
   max-width: 420px;
-  text-align: center;
-  padding: 28px;
-  color: #b91c1c;
-  background: var(--danger-soft);
-  border: 1px solid #fecaca;
-  border-radius: var(--radius);
+  padding: 18px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #a82626;
+  background: var(--neg-soft);
+  border-radius: 16px;
 }
 
-@media (max-width: 700px) {
+@media (min-width: 960px) {
+  .layout {
+    display: flex;
+  }
+
+  .layout-main {
+    flex: 1;
+  }
+
   .layout-content {
-    padding: 20px 16px 40px;
+    padding: 16px 48px 72px;
   }
 }

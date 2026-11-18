@@ -22,6 +22,15 @@ export function formatRate(value) {
   });
 }
 
+// Relative time for recent items: "just now", "5 min ago", "3 h ago", then the full date
+export function timeAgo(value) {
+  const seconds = Math.max(0, (Date.now() - new Date(value).getTime()) / 1000);
+  if (seconds < 60) return "just now";
+  if (seconds < 3600) return `${Math.floor(seconds / 60)} min ago`;
+  if (seconds < 86400) return `${Math.floor(seconds / 3600)} h ago`;
+  return formatDateTime(value);
+}
+
 // Date and time: "2026-11-11T12:31:05" -> "11 Nov 2026, 12:31:05"
 export function formatDateTime(value) {
   return new Date(value).toLocaleString("en-GB", {

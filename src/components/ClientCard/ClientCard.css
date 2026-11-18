@@ -1,23 +1,25 @@
-.balance-box {
+.client-card {
+  max-width: 460px;
+}
+
+/* The balance is the point of a client card: a large plain number */
+.balance-line {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin: 14px 0 6px;
-  padding: 16px 18px;
-  border-radius: 12px;
-  color: #fff;
-  background: linear-gradient(135deg, #0f172a, #1e293b 60%, #1d4ed8 160%);
+  padding: 8px 0 18px;
 }
 
-.balance-box span {
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--gold);
+.balance-line span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
 }
 
-.balance-box strong {
-  font-size: 26px;
-  letter-spacing: -0.3px;
+.balance-line strong {
+  font-size: clamp(38px, 11vw, 48px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   font-variant-numeric: tabular-nums;
 }

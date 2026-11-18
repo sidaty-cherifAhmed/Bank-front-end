@@ -1,70 +1,80 @@
 .permissions-box {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 18px 18px;
+  min-width: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  border: none;
 }
 
 .permissions-box legend {
-  padding: 0 8px;
+  padding: 0;
+  margin-bottom: 10px;
   font-size: 13px;
-  font-weight: 600;
-  color: #334155;
+  font-weight: 700;
+  color: var(--ink-2);
 }
 
 .perm-value {
-  margin-left: 6px;
-  padding: 2px 9px;
+  margin-left: 8px;
+  padding: 2px 10px;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  background: #fff;
   border-radius: 999px;
-  font-size: 12px;
-  color: var(--primary-dark);
-  background: var(--primary-soft);
 }
 
 .perm-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 10px;
+  grid-template-columns: 1fr;
+  gap: 8px;
 }
 
+/* Each permission is a full-width, thumb-sized row */
 .perm-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  font-size: 13.5px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
+  gap: 12px;
+  min-height: 54px;
+  padding: 0 16px;
+  font-size: 15px;
+  font-weight: 600;
   user-select: none;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s, transform 0.2s var(--ease);
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  transition: border-color 0.15s, background 0.15s;
 }
 
 .perm-item input {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--primary);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  accent-color: var(--ink);
 }
 
 .perm-item:hover {
-  border-color: #b7cdfa;
-  transform: translateY(-1px);
+  border-color: var(--rule-strong);
 }
 
 .perm-item:has(input:checked) {
-  border-color: var(--primary);
-  background: var(--primary-soft);
-  font-weight: 600;
+  font-weight: 800;
+  border-color: var(--ink);
 }
 
 .perm-item:has(input:disabled) {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
-  transform: none;
 }
 
 .perm-all {
   grid-column: 1 / -1;
+}
+
+@media (min-width: 520px) {
+  .perm-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }

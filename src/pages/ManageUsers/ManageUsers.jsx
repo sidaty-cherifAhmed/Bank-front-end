@@ -51,8 +51,8 @@ export default function ManageUsers() {
           <tbody>
             {users.map((u) => (
               <tr key={u.id}>
-                <td className="cell-id">#{u.id}</td>
-                <td>
+                <td data-label="ID" className="cell-id">#{u.id}</td>
+                <td data-label="User">
                   <div className="cell-user">
                     <span className="mini-avatar">
                       {u.firstname[0]}{u.lastname[0]}
@@ -63,8 +63,8 @@ export default function ManageUsers() {
                     </div>
                   </div>
                 </td>
-                <td>{u.phone}</td>
-                <td>
+                <td data-label="Phone">{u.phone}</td>
+                <td data-label="Permissions">
                   <button
                     className="eye-btn"
                     onClick={() => setSelectedUser(u)}

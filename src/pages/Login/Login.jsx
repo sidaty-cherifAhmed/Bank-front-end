@@ -6,8 +6,7 @@ import {
 
 import api from "../../service/api";
 import bankImg from "../../assets/bank.png";
-import DemoInfo from "../../components/DemoInfo/DemoInfo";
-import "./Login.css";
+import DemoInfo from "../../components/DemoInfo/DemoInfo";import "./Login.css";
 
 export default function Login()
 {

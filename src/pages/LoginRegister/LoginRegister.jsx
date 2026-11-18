@@ -156,9 +156,9 @@ export default function LoginRegister() {
                   )}
                   {records.map((r) => (
                     <tr key={r.id}>
-                      <td className="cell-id">#{r.id}</td>
-                      <td className="cell-date">{formatDateTime(r.dateTime)}</td>
-                      <td>
+                      <td data-label="#" className="cell-id">#{r.id}</td>
+                      <td data-label="Date and time" className="cell-date">{formatDateTime(r.dateTime)}</td>
+                      <td data-label="User">
                         <div className="cell-user">
                           <span className="mini-avatar">
                             {r.userName.slice(0, 2)}
@@ -166,7 +166,7 @@ export default function LoginRegister() {
                           <div className="cell-name">@{r.userName}</div>
                         </div>
                       </td>
-                      <td>
+                      <td data-label="Permissions">
                         <button
                           className="eye-btn"
                           onClick={() => setSelected(r)}

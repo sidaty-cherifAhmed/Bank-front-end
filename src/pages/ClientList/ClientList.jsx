@@ -62,8 +62,8 @@ export default function ClientList() {
             )}
             {clients.map((c) => (
               <tr key={c.id}>
-                <td className="cell-id">#{c.id}</td>
-                <td>
+                <td data-label="ID" className="cell-id">#{c.id}</td>
+                <td data-label="Client">
                   <div className="cell-user">
                     <span className="mini-avatar">{initials(c.clientName)}</span>
                     <div>
@@ -72,9 +72,9 @@ export default function ClientList() {
                     </div>
                   </div>
                 </td>
-                <td>{c.accountNumber}</td>
-                <td>{c.phone}</td>
-                <td className="cell-money">{formatMoney(c.balance)}</td>
+                <td data-label="Account">{c.accountNumber}</td>
+                <td data-label="Phone">{c.phone}</td>
+                <td data-label="Balance" className="cell-money">{formatMoney(c.balance)}</td>
               </tr>
             ))}
           </tbody>

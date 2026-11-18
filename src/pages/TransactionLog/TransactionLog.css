@@ -1,45 +1,52 @@
+/* Operation type: a soft pill coloured by direction (money in / money out) */
 .type-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
+  padding: 3px 12px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--ink-2);
+  background: #fff;
   border-radius: 999px;
-  color: var(--muted);
-  background: #f1f5f9;
 }
 
 .type-badge svg {
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .type-badge.deposit {
-  color: #15803d;
-  background: #dcfce7;
+  color: var(--pos);
+  background: var(--pos-soft);
 }
 
 .type-badge.withdraw {
-  color: #b91c1c;
-  background: var(--danger-soft);
+  color: var(--neg);
+  background: var(--neg-soft);
 }
 
 .cell-amount,
 .cell-balance {
-  text-align: right;
-  font-weight: 600;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
 .cell-amount.deposit {
-  color: var(--success);
+  color: var(--pos);
 }
 
 .cell-amount.withdraw {
-  color: var(--danger);
+  color: var(--neg);
 }
 
 .cell-balance {
-  font-weight: 500;
+  font-weight: 600;
+}
+
+@media (min-width: 760px) {
+  .cell-amount,
+  .cell-balance {
+    text-align: right !important;
+  }
 }

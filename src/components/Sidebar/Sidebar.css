@@ -1,46 +1,88 @@
+/* Light menu. Phones: a drawer opened from "More". Wide screens: part of the page. */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: rgba(25, 28, 31, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.sidebar-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .sidebar {
-  width: 260px;
-  flex-shrink: 0;
-  color: #fff;
-  padding: 22px 14px;
-  position: sticky;
+  position: fixed;
   top: 0;
-  height: 100vh;
+  bottom: 0;
+  left: 0;
+  z-index: 60;
+  width: min(88vw, 320px);
+  padding: 14px 12px calc(24px + env(safe-area-inset-bottom));
   overflow-y: auto;
-  background: linear-gradient(180deg, #0b1220 0%, #111c33 100%);
-  scrollbar-width: thin;
-  scrollbar-color: #334155 transparent;
+  overscroll-behavior: contain;
+  color: var(--ink);
+  background: var(--paper);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform 0.3s var(--ease), visibility 0s linear 0.3s;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.3s var(--ease), visibility 0s;
 }
 
 .sidebar-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  margin-bottom: 28px;
-  padding: 0 10px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 10px;
+  height: 48px;
+  padding: 0 10px;
+  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .sidebar-logo svg {
-  color: var(--gold);
   flex-shrink: 0;
 }
 
+.sidebar-close {
+  width: 42px;
+  height: 42px;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: var(--surface);
+  border: none;
+  border-radius: 50%;
+}
+
+/* ---------- links ---------- */
 .sidebar-link {
-  position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 11px 14px;
-  margin-bottom: 4px;
-  border-radius: 10px;
-  color: #aab6cc;
+  gap: 14px;
+  width: 100%;
+  min-height: 50px;
+  padding: 0 14px;
+  margin-bottom: 2px;
+  font-size: 15.5px;
+  font-weight: 600;
+  text-align: left;
   text-decoration: none;
-  font-size: 14.5px;
-  transition: background 0.2s, color 0.2s, transform 0.2s var(--ease);
+  color: var(--ink-2);
+  background: none;
+  border: none;
+  border-radius: 14px;
+  transition: background 0.15s, color 0.15s;
 }
 
 .sidebar-link svg {
@@ -49,74 +91,108 @@
 }
 
 .sidebar-link:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: #fff;
-  transform: translateX(3px);
+  background: var(--surface);
 }
 
 .sidebar-link.active {
-  color: #fff;
-  font-weight: 600;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(29, 78, 216, 0.95));
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
-  transform: none;
-}
-
-/* Parent button (has a submenu) */
-.sidebar-parent {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
+  color: var(--ink);
+  font-weight: 800;
+  background: var(--sunken);
 }
 
 .sidebar-parent.active-parent {
-  color: #fff;
-  font-weight: 600;
+  color: var(--ink);
+  font-weight: 800;
 }
 
 .sidebar-arrow {
   margin-left: auto;
-  font-size: 11px;
   display: flex;
-  transition: transform 0.25s var(--ease);
+  font-size: 11px;
+  color: var(--faint);
 }
 
-/* Submenu */
+/* ---------- submenu ---------- */
 .submenu {
   margin: 2px 0 8px 22px;
   padding-left: 10px;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-  animation: fade-up 0.3s var(--ease);
+  border-left: 2px solid var(--rule);
+  animation: fade-up 0.25s var(--ease);
 }
 
 .submenu .sidebar-link {
-  font-size: 13.5px;
-  padding: 9px 12px;
+  min-height: 44px;
+  font-size: 14.5px;
 }
 
-/* Small screens: icons only */
-@media (max-width: 800px) {
-  .sidebar {
-    width: 68px;
-    padding: 18px 10px;
-  }
-
-  .sidebar-logo span,
-  .sidebar-link span {
+/* Wide screens */
+@media (min-width: 960px) {
+  .sidebar-backdrop {
     display: none;
   }
 
-  .sidebar-logo,
-  .sidebar-link {
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
+  .sidebar {
+    position: sticky;
+    top: 0;
+    width: 272px;
+    height: 100vh;
+    height: 100dvh;
+    flex-shrink: 0;
+    padding: 20px 16px 24px;
+    transform: none;
+    visibility: visible;
+    overflow-x: hidden;
+    border-right: 1px solid var(--rule);
+    transition: width 0.3s var(--ease), padding 0.3s var(--ease),
+      border-color 0.3s, visibility 0s;
   }
 
-  .submenu {
-    margin-left: 0;
-    padding-left: 0;
-    border-left: none;
+  /* keep the menu's content at full width while the panel slides shut (no squashed text) */
+  .sidebar > * {
+    min-width: 240px;
+  }
+
+  /* Folded: a narrow rail that keeps only the icons (names show as a tooltip on hover) */
+  .nav-collapsed .sidebar {
+    width: 84px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .nav-collapsed .sidebar > * {
+    min-width: 0;
+  }
+
+  .nav-collapsed .sidebar-logo {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .nav-collapsed .sidebar-logo span,
+  .nav-collapsed .sidebar-link span,
+  .nav-collapsed .sidebar-arrow,
+  .nav-collapsed .submenu {
+    display: none;
+  }
+
+  .nav-collapsed .sidebar-link {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .nav-collapsed .sidebar-link svg {
+    font-size: 18px;
+  }
+
+  .sidebar-close {
+    display: none;
+  }
+
+  .sidebar-link {
+    min-height: 44px;
+  }
+
+  .submenu .sidebar-link {
+    min-height: 40px;
   }
 }

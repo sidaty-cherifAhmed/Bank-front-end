@@ -151,10 +151,10 @@ export default function UpdateRate() {
               <tbody>
                 {found.map((c) => (
                   <tr key={c.id}>
-                    <td className="cell-name">{c.country}</td>
-                    <td><span className="code-chip">{c.code}</span></td>
-                    <td>{c.currencyName}</td>
-                    <td className="cell-rate">
+                    <td data-label="Country" className="cell-name">{c.country}</td>
+                    <td data-label="Code"><span className="code-chip">{c.code}</span></td>
+                    <td data-label="Currency">{c.currencyName}</td>
+                    <td data-label="Rate (per 1 USD)" className="cell-rate">
                       <span className="rate-base">1 USD =</span> {formatRate(c.rate)}{" "}
                       <span className="rate-code">{c.code}</span>
                     </td>

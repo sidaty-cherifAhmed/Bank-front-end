@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { FaInfo, FaChevronDown, FaCopy, FaCheck, FaMagic } from "react-icons/fa";
+import { FaInfo, FaChevronDown, FaCopy, FaCheck, FaUser, FaLock } from "react-icons/fa";
 import { DEMO_ACCOUNT } from "../../config/demoAccount";
 import "./DemoInfo.css";
 
-// Banner above the login form: an animated info icon that opens the demo account details.
-// onFill({ username, password }) fills the login form with the demo credentials.
+// A small note above the login form: an animated info icon that opens the demo credentials.
+// onFill({ username, password }) fills the login form with them.
 export default function DemoInfo({ onFill }) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(""); // which value was just copied: "username" | "password"
@@ -23,15 +23,21 @@ export default function DemoInfo({ onFill }) {
     }
   };
 
-  const row = (key, label) => (
+  const use = () => {
+    onFill(DEMO_ACCOUNT);
+    setOpen(false);
+  };
+
+  // One credential: an icon instead of a word, the value, and a copy button
+  const row = (key, icon, name) => (
     <div className="demo-row">
-      <span className="demo-label">{label}</span>
+      <span className="demo-row-icon">{icon}</span>
       <code className="demo-value">{DEMO_ACCOUNT[key]}</code>
       <button
         type="button"
         className={copied === key ? "demo-copy done" : "demo-copy"}
         onClick={() => copy(key)}
-        aria-label={`Copy ${label.toLowerCase()}`}
+        aria-label={`Copy ${name}`}
       >
         {copied === key ? <FaCheck /> : <FaCopy />}
       </button>
@@ -50,29 +56,17 @@ export default function DemoInfo({ onFill }) {
         <span className="demo-icon">
           <FaInfo />
         </span>
-        <span className="demo-title">
-          <strong>Just want to look around?</strong>
-          <small>Try the demo account</small>
-        </span>
+        <strong className="demo-title">Try the demo</strong>
         <FaChevronDown className="demo-chevron" />
       </button>
 
       <div id="demo-panel" className="demo-panel" hidden={!open}>
-        {row("username", "Username")}
-        {row("password", "Password")}
+        {row("username", <FaUser />, "username")}
+        {row("password", <FaLock />, "password")}
 
-        <button
-          type="button"
-          className="demo-fill"
-          onClick={() => onFill(DEMO_ACCOUNT)}
-        >
-          <FaMagic /> Fill in the form for me
+        <button type="button" className="demo-fill" onClick={use}>
+          Use demo account
         </button>
-
-        <ul className="demo-notes">
-          <li><b>Can:</b> manage clients, transactions, currencies and view the login register.</li>
-          <li><b>Cannot:</b> Manage users.</li>
-        </ul>
       </div>
     </div>
   );

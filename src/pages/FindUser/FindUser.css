@@ -1,7 +1,9 @@
+/* Search row: stacked on phones, side by side from 520px */
 .find-form {
   display: flex;
-  gap: 12px;
-  max-width: 460px;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 480px;
   margin-bottom: 20px;
 }
 
@@ -15,19 +17,30 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #94a3b8;
+  color: var(--faint);
   pointer-events: none;
-  transition: color 0.2s;
+  transition: color 0.18s;
 }
 
 .find-input:focus-within svg {
-  color: var(--primary);
+  color: var(--brand);
 }
 
 .find-input .input {
-  padding-left: 40px;
+  padding-left: 42px;
 }
 
 .find-error {
-  max-width: 460px;
+  max-width: 480px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 520px) {
+  .find-form {
+    flex-direction: row;
+  }
+
+  .find-form .btn {
+    min-width: 120px;
+  }
 }

@@ -81,23 +81,23 @@ export default function TransferLog() {
                   )}
                   {records.map((r) => (
                     <tr key={r.id}>
-                      <td className="cell-id">#{r.id}</td>
-                      <td className="cell-date">{formatDateTime(r.dateTime)}</td>
-                      <td>
+                      <td data-label="#" className="cell-id">#{r.id}</td>
+                      <td data-label="Date and time" className="cell-date">{formatDateTime(r.dateTime)}</td>
+                      <td data-label="Transfer">
                         <div className="transfer-route">
                           <span className="account-chip">{r.fromAccount}</span>
                           <FaArrowRight />
                           <span className="account-chip">{r.toAccount}</span>
                         </div>
                       </td>
-                      <td className="cell-money">{formatMoney(r.amount)}</td>
-                      <td>
+                      <td data-label="Amount" className="cell-money">{formatMoney(r.amount)}</td>
+                      <td data-label="Balances after">
                         <div className="balances-after">
                           <span><small>From</small> {formatMoney(r.fromBalanceAfter)}</span>
                           <span><small>To</small> {formatMoney(r.toBalanceAfter)}</span>
                         </div>
                       </td>
-                      <td>
+                      <td data-label="By">
                         <div className="cell-user">
                           <span className="mini-avatar">{r.userName.slice(0, 2)}</span>
                           <div className="cell-name">@{r.userName}</div>

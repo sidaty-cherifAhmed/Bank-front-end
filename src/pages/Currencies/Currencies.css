@@ -1,34 +1,35 @@
 .code-chip {
   display: inline-block;
   min-width: 52px;
-  padding: 3px 10px;
-  text-align: center;
+  padding: 3px 12px;
   font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--primary-dark);
-  background: var(--primary-soft);
-  border-radius: 8px;
-}
-
-.th-right,
-.cell-rate {
-  text-align: right !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--ink);
+  background: #fff;
+  border-radius: 999px;
 }
 
 .cell-rate {
-  font-weight: 600;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
-.rate-base {
-  margin-right: 4px;
-  font-weight: 400;
+.rate-base,
+.rate-code {
+  font-weight: 500;
   color: var(--muted);
 }
 
-.rate-code {
-  font-weight: 400;
-  color: var(--muted);
+.rate-base {
+  margin-right: 4px;
+}
+
+@media (min-width: 760px) {
+  .th-right,
+  .cell-rate {
+    text-align: right !important;
+  }
 }

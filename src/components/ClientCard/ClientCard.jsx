@@ -1,12 +1,18 @@
 import { FaPhone, FaEnvelope, FaHashtag } from "react-icons/fa";
+import CountUp from "../CountUp/CountUp";
 import { formatMoney, initials } from "../../utils/format";
 import "../UserCard/UserCard.css";
 import "./ClientCard.css";
 
-// Client card. children = extra buttons shown at the bottom of the card
+// "12345678" -> "1234 5678": easier to read and to copy
+function spaced(accountNumber) {
+  return String(accountNumber).replace(/(.{4})/g, "$1 ").trim();
+}
+
+// A client: name, a big balance, then the details. children = extra buttons at the bottom
 export default function ClientCard({ client, children }) {
   return (
-    <div className="user-card card">
+    <div className="user-card card client-card">
       <div className="user-card-top">
         <div className="user-avatar">{initials(client.clientName)}</div>
         <div>
@@ -15,15 +21,17 @@ export default function ClientCard({ client, children }) {
         </div>
       </div>
 
-      <div className="balance-box">
+      <div className="balance-line">
         <span>Balance</span>
-        <strong>{formatMoney(client.balance)}</strong>
+        <strong>
+          <CountUp value={Number(client.balance)} format={formatMoney} />
+        </strong>
       </div>
 
       <div className="user-row">
         <FaHashtag />
         <span className="user-label">Account</span>
-        <span className="user-value">{client.accountNumber}</span>
+        <span className="user-value">{spaced(client.accountNumber)}</span>
       </div>
 
       <div className="user-row">

@@ -1,7 +1,7 @@
 import {
   FaHome, FaList, FaUserPlus, FaTrash, FaEdit, FaSearch,
   FaExchangeAlt, FaUsers, FaUserMinus, FaUserEdit,
-  FaClipboardList, FaCoins, FaChevronDown, FaChevronRight, FaUniversity, FaPlusCircle, FaMinusCircle, FaHistory, FaCalculator, FaListAlt
+  FaClipboardList, FaCoins, FaChevronDown, FaChevronRight, FaUniversity, FaPlusCircle, FaMinusCircle, FaHistory, FaCalculator, FaListAlt, FaTimes
 } from "react-icons/fa";
 import { NavLink,useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -60,7 +60,9 @@ const menu = [
 ];
 
 
-export default function Sidebar()
+// open/onClose control the drawer on phones.
+// collapsed: on wide screens only the icons are shown; onExpand unfolds the menu again.
+export default function Sidebar({ open = false, onClose = () => {}, collapsed = false, onExpand = () => {} })
 {
     const location = useLocation();
 
@@ -76,11 +78,21 @@ export default function Sidebar()
 
 
     return (
-    <aside className="sidebar">
+    <>
+    <div
+      className={open ? "sidebar-backdrop show" : "sidebar-backdrop"}
+      onClick={onClose}
+      aria-hidden="true"
+    />
+
+    <aside className={open ? "sidebar open" : "sidebar"} aria-label="Main menu">
 
       <div className="sidebar-logo">
-        <FaUniversity size={26} />
+        <FaUniversity size={22} />
         <span>Bank System</span>
+        <button className="sidebar-close" onClick={onClose} aria-label="Close menu">
+          <FaTimes />
+        </button>
       </div>
 
       <nav>
@@ -94,7 +106,16 @@ export default function Sidebar()
                     ? "sidebar-link sidebar-parent active-parent"
                     : "sidebar-link sidebar-parent"
                 }
-                onClick={() => toggle(item.label)}
+                title={item.label}
+                onClick={() => {
+                  // In the icon-only rail a group cannot show its items: unfold the menu first
+                  if (collapsed) {
+                    onExpand();
+                    setOpenMenu(item.label);
+                  } else {
+                    toggle(item.label);
+                  }
+                }}
               >
 
                 {item.icon}
@@ -112,6 +133,7 @@ export default function Sidebar()
                     <NavLink
                       key={child.path}
                       to={child.path}
+                      onClick={onClose}
                       end
                       className={({ isActive }) => (isActive ? "sidebar-link active" : "sidebar-link")}
                     >
@@ -127,6 +149,8 @@ export default function Sidebar()
             <NavLink
               key={item.path}
               to={item.path}
+              title={item.label}
+              onClick={onClose}
               end
               className={({ isActive }) => (isActive ? "sidebar-link active" : "sidebar-link")}
             >
@@ -138,6 +162,7 @@ export default function Sidebar()
        
       </nav>
     </aside>
+    </>
   );
 }
 
