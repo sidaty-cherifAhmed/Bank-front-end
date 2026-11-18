@@ -6,6 +6,7 @@ import {
 
 import api from "../../service/api";
 import bankImg from "../../assets/bank.png";
+import DemoInfo from "../../components/DemoInfo/DemoInfo";
 import "./Login.css";
 
 export default function Login()
@@ -59,6 +60,16 @@ export default function Login()
                 </div>
 
                 <div className="login-form-wrap">
+                  <div className="login-column">
+
+                    <DemoInfo
+                        onFill={({ username, password }) => {
+                            setUsername(username);
+                            setPassword(password);
+                            setError("");
+                        }}
+                    />
+
                     <form className="login-form" onSubmit={handleSubmit}>
 
                         <h2>Sign in</h2>
@@ -101,6 +112,7 @@ export default function Login()
                         </button>
 
                     </form>
+                  </div>
                 </div>
            </div>
 }

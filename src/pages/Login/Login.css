@@ -131,6 +131,15 @@
     padding: 32px;
 }
 
+/* Holds the demo banner above the form */
+.login-column {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .login-form {
     width: 100%;
     max-width: 400px;
