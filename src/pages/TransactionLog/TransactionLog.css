@@ -1,0 +1,45 @@
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 999px;
+  color: var(--muted);
+  background: #f1f5f9;
+}
+
+.type-badge svg {
+  font-size: 11px;
+}
+
+.type-badge.deposit {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.type-badge.withdraw {
+  color: #b91c1c;
+  background: var(--danger-soft);
+}
+
+.cell-amount,
+.cell-balance {
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.cell-amount.deposit {
+  color: var(--success);
+}
+
+.cell-amount.withdraw {
+  color: var(--danger);
+}
+
+.cell-balance {
+  font-weight: 500;
+}

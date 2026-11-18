@@ -16,6 +16,7 @@ import Deposit from "./pages/Deposit/Deposit";
 import Withdraw from "./pages/Withdraw/Withdraw";
 import Transfer from "./pages/Transfer/Transfer";
 import TransferLog from "./pages/TransferLog/TransferLog";
+import TransactionLog from "./pages/TransactionLog/TransactionLog";
 import Currencies from "./pages/Currencies/Currencies";
 import FindCurrency from "./pages/FindCurrency/FindCurrency";
 import UpdateRate from "./pages/UpdateRate/UpdateRate";
@@ -116,6 +117,7 @@ export default function App() {
               <Route path="withdraw" element={<Withdraw />} />
               <Route path="transfer" element={<Transfer />} />
               <Route path="transfer-log" element={<TransferLog />} />
+              <Route path="log" element={<TransactionLog />} />
             </Route>
 
         {/* Currencies: available to any logged-in user */}
