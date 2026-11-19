@@ -2,7 +2,8 @@ import axios from "axios";
 
 const  api = axios.create(
     {
-        baseURL:"http://localhost:8080/api"
+        // Set VITE_API_URL (see .env.example) to point the app at another server
+        baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080/api"
     }
 )
 
